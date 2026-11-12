@@ -1,0 +1,2562 @@
+/* ==========================================================================
+   НАУКОВО-УЧНІВСЬКИЙ ЖУРНАЛ «ЕКОЛОГІЧНИЙ ВІСНИК» №7/2026
+   Тема: Роль АЕС під час воєнного стану в Україні
+   Стилі для сайту-виставки та онлайн-видання журналу
+   ========================================================================== */
+
+:root {
+  /* Головна палітра: Атомна енергія + Екологія */
+  --primary: #0b2545;
+  --primary-dark: #07192f;
+  --primary-light: #133e68;
+  --secondary: #00875a;
+  --secondary-light: #10b981;
+  --secondary-glow: rgba(16, 185, 129, 0.25);
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --danger: #ef4444;
+  --warning: #f97316;
+  --info: #0284c7;
+
+  /* Нейтральні кольори (Світла тема) */
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-subtle: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-light: #64748b;
+  --border-color: #e2e8f0;
+  --border-focus: #0284c7;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(226, 232, 240, 0.8);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 30px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -4px rgba(0, 0, 0, 0.06);
+
+  /* Типографіка */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Радіуси та переходи */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Темна реакторна тема (Dark Command Center Mode) */
+[data-theme="dark"] {
+  --bg-page: #0a0f1d;
+  --bg-card: #111827;
+  --bg-card-hover: #1f2937;
+  --bg-subtle: #192231;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-light: #64748b;
+  --border-color: #27354a;
+  --border-focus: #38bdf8;
+  --glass-bg: rgba(17, 24, 39, 0.9);
+  --glass-border: rgba(39, 53, 74, 0.8);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 35px rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   Базові стилі та скидання
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.65;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--info);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--secondary-light);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   Верхня плашка коледжу та цитата Канта
+   ========================================================================== */
+.top-notice-bar {
+  background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 100%);
+  color: #ffffff;
+  padding: 8px 0;
+  font-size: 0.85rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.top-notice-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.college-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.college-mini-logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.kant-quote {
+  font-style: italic;
+  color: #fde68a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kant-quote strong {
+  color: #ffffff;
+  font-style: normal;
+}
+
+/* ==========================================================================
+   Шапка та Навігація (Header & Sticky Nav)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.brand-logo-img:hover {
+  transform: rotate(10deg) scale(1.05);
+}
+
+.brand-text h1 {
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .brand-text h1 {
+  color: #38bdf8;
+}
+
+.brand-text .issue-tag {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.7rem;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+[data-theme="dark"] .brand-text .issue-tag {
+  background: #0369a1;
+  color: #e0f2fe;
+}
+
+.brand-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 6px 9px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--secondary-light);
+  background: var(--bg-card-hover);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Кнопка "Режим показу / Презентація" */
+.btn-presentation {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.84rem;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.35);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-presentation:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.5);
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.btn-icon:hover {
+  color: var(--text-main);
+  background: var(--bg-card-hover);
+  border-color: var(--text-muted);
+}
+
+.mobile-menu-toggle {
+  display: none;
+}
+
+/* ==========================================================================
+   Hero Секція: Обкладинка журналу та презентація випуску
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  padding: 40px 0 60px;
+  background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 10% 80%, rgba(2, 132, 199, 0.08) 0%, transparent 50%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-primary {
+  background: rgba(11, 37, 69, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(11, 37, 69, 0.2);
+}
+
+[data-theme="dark"] .badge-primary {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.badge-eco {
+  background: rgba(16, 185, 129, 0.12);
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="dark"] .badge-eco {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.badge-contest {
+  background: rgba(245, 158, 11, 0.12);
+  color: #92400e;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+[data-theme="dark"] .badge-contest {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fcd34d;
+}
+
+.hero-title {
+  font-size: 2.7rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--primary);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+[data-theme="dark"] .hero-title {
+  color: #ffffff;
+}
+
+.hero-title .text-accent {
+  background: linear-gradient(135deg, #0284c7 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 1.12rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.hero-meta-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+.meta-item-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-light);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.meta-item-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.meta-item-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.hero-btn-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--text-muted);
+}
+
+/* 3D Обкладинка журналу у правій колонці */
+.hero-cover-showcase {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.journal-cover-frame {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(145deg, #0b2545 0%, #051427 100%);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: 0 25px 50px -12px rgba(11, 37, 69, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.journal-cover-frame:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: 0 35px 60px -15px rgba(11, 37, 69, 0.6);
+}
+
+.journal-inner-cover {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  color: #0f172a;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.cover-header {
+  background: #0b2545;
+  color: #ffffff;
+  padding: 14px;
+  text-align: center;
+  border-bottom: 3px solid var(--accent);
+}
+
+.cover-header h3 {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #93c5fd;
+  margin-bottom: 2px;
+}
+
+.cover-header h2 {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.cover-triptych-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.cover-body {
+  padding: 16px;
+  background: #f8fafc;
+}
+
+.cover-issue-topic {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0b2545;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.cover-highlights-list {
+  list-style: none;
+  font-size: 0.8rem;
+  color: #334155;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cover-highlights-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #cbd5e1;
+}
+
+.cover-highlights-list li span.bullet {
+  color: var(--secondary-light);
+  font-weight: bold;
+}
+
+.cover-author-footer {
+  padding: 12px 16px;
+  background: #0f172a;
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cover-author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+}
+
+.cover-author-info {
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.cover-author-info strong {
+  color: #ffffff;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Лічильники статистики (Stats Counter Bar)
+   ========================================================================== */
+.stats-banner {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 24px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 12px 8px;
+  border-right: 1px solid var(--border-color);
+}
+
+.stat-box:last-child {
+  border-right: none;
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 6px;
+  font-family: var(--font-mono);
+}
+
+[data-theme="dark"] .stat-number {
+  color: #38bdf8;
+}
+
+.stat-number.text-eco {
+  color: var(--secondary-light);
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   Секції контенту: Спільні стилі рубрик
+   ========================================================================== */
+.journal-section {
+  padding: 70px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-kicker {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .section-kicker {
+  color: var(--secondary-light);
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+[data-theme="dark"] .section-title {
+  color: #ffffff;
+}
+
+.section-lead {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 860px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Секція: Про проєкт та опитування містян
+   ========================================================================== */
+.survey-section {
+  background: var(--bg-subtle);
+}
+
+.survey-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.survey-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+}
+
+.survey-card h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: var(--primary);
+}
+
+[data-theme="dark"] .survey-card h3 {
+  color: #38bdf8;
+}
+
+.survey-photos-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.survey-photo-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-card);
+}
+
+.survey-photo-item img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.survey-photo-item:hover img {
+  transform: scale(1.03);
+}
+
+.survey-photo-caption {
+  font-size: 0.78rem;
+  padding: 8px 10px;
+  color: var(--text-muted);
+  text-align: center;
+  font-weight: 500;
+}
+
+.goals-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.goals-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.goal-icon {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--secondary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   РУБРИКА 1: Атомна енергетика та Енергокомплекс ПАЕС
+   ========================================================================== */
+.npp-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.npp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.npp-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary);
+}
+
+.npp-card.status-active::before {
+  background: var(--secondary-light);
+}
+
+.npp-card.status-occupied::before {
+  background: var(--danger);
+}
+
+.npp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.npp-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.npp-location {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.npp-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.npp-spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.npp-spec-label {
+  color: var(--text-muted);
+}
+
+.npp-spec-val {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.npp-status-pill {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-active .npp-status-pill {
+  background: rgba(16, 185, 129, 0.15);
+  color: #065f46;
+}
+
+[data-theme="dark"] .status-active .npp-status-pill {
+  color: #34d399;
+}
+
+.status-occupied .npp-status-pill {
+  background: rgba(239, 68, 68, 0.15);
+  color: #991b1b;
+}
+
+[data-theme="dark"] .status-occupied .npp-status-pill {
+  color: #f87171;
+}
+
+/* Інтерактивна схема Південноукраїнського енергокомплексу */
+.complex-interactive-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-top: 36px;
+  box-shadow: var(--shadow-md);
+}
+
+.complex-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.complex-map-container {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+}
+
+.complex-map-img {
+  width: 100%;
+  display: block;
+}
+
+.map-point-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.4), var(--shadow-md);
+  transition: transform 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.map-point-btn:hover, .map-point-btn.active {
+  transform: scale(1.25);
+  background: var(--accent);
+  color: #0b2545;
+}
+
+.complex-details-panel {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  min-height: 320px;
+}
+
+.complex-details-panel h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .complex-details-panel h4 {
+  color: #38bdf8;
+}
+
+.complex-points-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.point-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.88rem;
+}
+
+.point-item:hover, .point-item.active {
+  border-color: var(--info);
+  background: var(--bg-card-hover);
+  border-left: 4px solid var(--info);
+}
+
+.point-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.point-item-body {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  display: none;
+  line-height: 1.45;
+}
+
+.point-item.active .point-item-body {
+  display: block;
+}
+
+/* ==========================================================================
+   РУБРИКА 2: Екологічні та технічні аспекти експлуатації АЕС
+   ========================================================================== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin: 24px 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.custom-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+  background: var(--bg-card);
+}
+
+.custom-data-table th {
+  background: var(--primary);
+  color: #ffffff;
+  padding: 14px 18px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.3px;
+}
+
+[data-theme="dark"] .custom-data-table th {
+  background: #1e293b;
+  color: #38bdf8;
+}
+
+.custom-data-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.custom-data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.custom-data-table tr:hover td {
+  background: var(--bg-card-hover);
+}
+
+.eco-threats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.threat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.threat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.threat-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.threat-card h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .threat-card h4 {
+  color: #38bdf8;
+}
+
+.threat-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   СЕКЦІЯ: Практична робота (Аналіз радіаційного фону АСКРО)
+   ========================================================================== */
+.practice-showcase {
+  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-subtle) 100%);
+  border: 2px solid rgba(2, 132, 199, 0.2);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  box-shadow: var(--shadow-lg);
+  margin: 30px 0;
+}
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.chart-header h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+/* Інтерактивний SVG Графік */
+.svg-chart-container {
+  width: 100%;
+  height: 280px;
+  position: relative;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 18px;
+  font-size: 0.8rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.legend-color-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+/* Інтерактивний переглядач міст Миколаївщини */
+.settlement-browser {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.settlement-browser h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.settlement-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  max-height: 290px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.settlement-chip {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settlement-chip:hover, .settlement-chip.active {
+  background: #e0f2fe;
+  border-color: #0284c7;
+}
+
+[data-theme="dark"] .settlement-chip:hover, [data-theme="dark"] .settlement-chip.active {
+  background: #0c4a6e;
+  border-color: #38bdf8;
+}
+
+.chip-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.chip-type {
+  font-size: 0.7rem;
+  color: var(--text-light);
+}
+
+.chip-val {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--secondary-light);
+}
+
+.practice-conclusion-box {
+  background: rgba(16, 185, 129, 0.08);
+  border-left: 4px solid var(--secondary-light);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 18px 24px;
+  margin-top: 24px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.practice-conclusion-box strong {
+  color: var(--secondary);
+}
+
+[data-theme="dark"] .practice-conclusion-box strong {
+  color: var(--secondary-light);
+}
+
+/* ==========================================================================
+   РУБРИКА 3: Шляхи підвищення надійності та Трирівневий захист
+   ========================================================================== */
+.defense-tiers-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.defense-tier-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.defense-tier-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.tier-number-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+.defense-tier-card h4 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.tier-target {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--info);
+  margin-bottom: 12px;
+}
+
+.tier-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  flex-grow: 1;
+}
+
+/* Плани розвитку: AP1000 Westinghouse та Малі модульні реактори */
+.future-tech-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 36px;
+}
+
+.future-tech-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+.future-tech-card h4 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+[data-theme="dark"] .future-tech-card h4 {
+  color: #38bdf8;
+}
+
+.future-tech-card p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* ==========================================================================
+   СЕКЦІЯ: Ексклюзивне інтерв’ю з Артемом Пікусом
+   ========================================================================== */
+.interview-section {
+  background: var(--bg-subtle);
+}
+
+.interview-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  box-shadow: var(--shadow-md);
+}
+
+.interview-hero-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 36px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.interview-hero-img-wrap {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--border-color);
+}
+
+.interview-hero-img-wrap img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.interview-person-meta h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+[data-theme="dark"] .interview-person-meta h3 {
+  color: #ffffff;
+}
+
+.interview-person-meta .role-pill {
+  display: inline-block;
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--info);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 14px;
+}
+
+.interview-person-meta p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.interview-qa-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.qa-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  transition: var(--transition);
+}
+
+.qa-card:hover {
+  border-color: var(--info);
+}
+
+.qa-question {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+[data-theme="dark"] .qa-question {
+  color: #38bdf8;
+}
+
+.qa-q-badge {
+  background: var(--primary);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+[data-theme="dark"] .qa-q-badge {
+  background: #0284c7;
+}
+
+.qa-answer {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.65;
+  padding-left: 36px;
+}
+
+.qa-answer ul {
+  margin: 10px 0 10px 20px;
+}
+
+/* ==========================================================================
+   СЕКЦІЯ: Довідник для населення (FAQ / Відповіді читачам)
+   ========================================================================== */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.accordion-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.accordion-header {
+  padding: 18px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--text-main);
+  user-select: none;
+}
+
+.accordion-header:hover {
+  background: var(--bg-card-hover);
+}
+
+.accordion-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  color: var(--info);
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-body {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.accordion-item.active .accordion-body {
+  padding: 0 20px 18px 20px;
+  max-height: 300px;
+}
+
+/* ==========================================================================
+   СЕКЦІЯ: Післямова та Висновки проєкту
+   ========================================================================== */
+.conclusions-showcase {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #ffffff;
+  border-radius: var(--radius-xl);
+  padding: 44px;
+  box-shadow: var(--shadow-xl);
+  margin: 30px 0;
+}
+
+.conclusions-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.conclusions-title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #fde68a;
+}
+
+.conclusion-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.conclusion-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  backdrop-filter: blur(8px);
+}
+
+.conclusion-num {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: var(--accent);
+  color: #0b2545;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.85rem;
+}
+
+.conclusion-text {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.conclusions-author-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+}
+
+.conclusions-author-card img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 16px;
+  border: 3px solid var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.conclusions-author-card h4 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+.conclusions-author-card p {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   Література та Джерела
+   ========================================================================== */
+.sources-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  list-style: none;
+  margin-top: 20px;
+}
+
+.source-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+  transition: var(--transition);
+}
+
+.source-item:hover {
+  border-color: var(--info);
+  background: var(--bg-card-hover);
+}
+
+.source-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--info);
+  background: rgba(2, 132, 199, 0.1);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   Футер сайту
+   ========================================================================== */
+.site-footer {
+  background: var(--primary-dark);
+  color: #94a3b8;
+  padding: 50px 0 24px;
+  border-top: 3px solid var(--secondary);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 36px;
+}
+
+.footer-brand h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.footer-brand p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.footer-col h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.footer-links a {
+  color: #94a3b8;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   МОДАЛЬНИЙ РЕЖИМ ПРЕЗЕНТАЦІЇ (SHOWCASE SLIDE DECK MODAL)
+   Повнофункціональний плеєр для показу 14 слайдів роботи
+   ========================================================================== */
+.presentation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(7, 25, 47, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+.presentation-modal.active {
+  display: flex;
+}
+
+.deck-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.deck-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.deck-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.deck-btn {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+}
+
+.deck-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffffff;
+}
+
+.deck-btn-close {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: rgba(239, 68, 68, 0.6);
+}
+
+.deck-btn-close:hover {
+  background: rgba(239, 68, 68, 0.8);
+}
+
+.deck-stage-area {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-canvas {
+  width: 100%;
+  max-width: 1080px;
+  aspect-ratio: 16 / 9;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  padding: 36px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  animation: slideFade 0.3s ease-out;
+}
+
+@keyframes slideFade {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.slide-content-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-nav-prev, .slide-nav-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: var(--transition);
+  z-index: 20;
+}
+
+.slide-nav-prev { left: 24px; }
+.slide-nav-next { right: 24px; }
+
+.slide-nav-prev:hover, .slide-nav-next:hover {
+  background: var(--info);
+  border-color: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.deck-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.85rem;
+}
+
+.slide-thumbnails-strip {
+  display: flex;
+  gap: 8px;
+  max-width: 65%;
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.slide-thumb {
+  width: 48px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  font-size: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #e2e8f0;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.slide-thumb.active {
+  background: var(--info);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   МОБІЛЬНЕ МЕНЮ ТА ПРОГРЕС ЧИТАННЯ
+   ========================================================================== */
+.reading-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 1100;
+}
+
+.reading-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--secondary-light), var(--info), var(--accent));
+  transition: width 0.1s linear;
+}
+
+.mobile-nav-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 20px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+}
+
+.mobile-nav-drawer.open {
+  display: flex;
+}
+
+.mobile-nav-drawer a {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.mobile-nav-drawer a:hover {
+  background: var(--bg-subtle);
+  color: var(--info);
+}
+
+/* ==========================================================================
+   ЗМІСТ ЖУРНАЛУ (INTERACTIVE ISSUE CONTENTS)
+   ========================================================================== */
+.toc-section {
+  background: var(--bg-card);
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.toc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  transition: var(--transition);
+  color: var(--text-main);
+}
+
+.toc-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--info);
+  box-shadow: var(--shadow-md);
+  color: var(--text-main);
+}
+
+.toc-page-num {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--info);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.toc-card h4 {
+  font-size: 0.98rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.toc-card p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   ДОДАТКОВІ ГАЛЕРЕЇ, КАРТКИ, ФІЛЬТРИ ТА LIGHTBOX
+   ========================================================================== */
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.filter-pill {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.filter-pill:hover, .filter-pill.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+[data-theme="dark"] .filter-pill.active {
+  background: var(--info);
+  border-color: var(--info);
+}
+
+.media-showcase-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.media-showcase-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.zoomable-img {
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.zoomable-img:hover {
+  transform: scale(1.015);
+}
+
+.media-caption {
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.callout-banner {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 22px 26px;
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.callout-banner-icon {
+  font-size: 2.4rem;
+  flex-shrink: 0;
+}
+
+/* Інтерактивний SVG-графік радіаційного фону */
+.svg-bar {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.svg-bar:hover {
+  opacity: 0.88;
+}
+
+.settlement-detail-card {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.safety-meter-track {
+  width: 100%;
+  height: 10px;
+  background: var(--border-color);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.safety-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary-light), #0284c7);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+/* Інтерактивний симулятор 3-рівневого захисту */
+.defense-simulator {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  margin-top: 28px;
+}
+
+.tier-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tier-tab-btn {
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.tier-tab-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .tier-tab-btn.active {
+  background: var(--info);
+  border-color: var(--info);
+}
+
+.tier-sim-panel {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+/* Експрес-вікторина (Перевір свої знання) */
+.quiz-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-top: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.quiz-option-btn {
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-subtle);
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: var(--transition);
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  border-color: var(--info);
+  background: var(--bg-card-hover);
+}
+
+.quiz-option-btn.correct {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: var(--secondary-light);
+  color: #065f46;
+}
+
+[data-theme="dark"] .quiz-option-btn.correct {
+  color: #6ee7b7;
+}
+
+.quiz-option-btn.wrong {
+  background: rgba(239, 68, 68, 0.16);
+  border-color: var(--danger);
+  color: #991b1b;
+}
+
+[data-theme="dark"] .quiz-option-btn.wrong {
+  color: #fca5a5;
+}
+
+.quiz-feedback {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  display: none;
+}
+
+.quiz-feedback.show {
+  display: block;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 15, 30, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.lightbox-modal.active {
+  display: flex;
+}
+
+.lightbox-inner {
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.lightbox-inner img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: var(--radius-md);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  background: #ffffff;
+}
+
+.lightbox-caption {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close:hover {
+  background: var(--danger);
+}
+
+/* Стилі всередині слайдів Режиму Презентації */
+.slide-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.slide-kicker-pill {
+  background: rgba(56, 189, 248, 0.18);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 3px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.slide-title-lg {
+  font-size: 1.95rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.slide-2col {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.slide-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1rem;
+  color: #e2e8f0;
+}
+
+.slide-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.45;
+}
+
+.slide-list li::before {
+  content: '▸';
+  color: #34d399;
+  font-weight: 900;
+}
+
+.slide-img-frame {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #ffffff;
+  max-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-img-frame img {
+  max-height: 350px;
+  width: auto;
+  object-fit: contain;
+}
+
+.slide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.slide-table th {
+  background: rgba(2, 132, 199, 0.35);
+  color: #ffffff;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.slide-table td {
+  padding: 8px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+.slide-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 10px;
+  margin-top: 12px;
+}
+
+.slide-progress-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.slide-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #34d399, #38bdf8);
+  transition: width 0.25s ease;
+}
+
+.deck-timer {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  color: #fde68a;
+}
+
+/* ==========================================================================
+   Адаптивність (Responsive Media Queries)
+   ========================================================================== */
+@media (max-width: 1120px) {
+  .nav-links {
+    display: none;
+  }
+  .mobile-menu-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-badge-row, .hero-btn-row {
+    justify-content: center;
+  }
+  .hero-cover-showcase {
+    order: -1;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .toc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .npp-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .complex-grid, .practice-grid, .conclusions-grid, .interview-hero-row, .tier-sim-panel, .slide-2col {
+    grid-template-columns: 1fr;
+  }
+  .defense-tiers-container, .eco-threats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-subtitle {
+    display: none;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-meta-card {
+    grid-template-columns: 1fr;
+  }
+  .stats-grid, .toc-grid, .quiz-options {
+    grid-template-columns: 1fr;
+  }
+  .npp-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .survey-grid, .faq-grid, .sources-list, .footer-grid, .future-tech-grid {
+    grid-template-columns: 1fr;
+  }
+  .callout-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .slide-canvas {
+    aspect-ratio: auto;
+    min-height: 420px;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .slide-title-lg {
+    font-size: 1.35rem;
+  }
+  .slide-nav-prev { left: 8px; }
+  .slide-nav-next { right: 8px; }
+}
+
+@media print {
+  .site-header, .top-notice-bar, .btn-presentation, .site-footer, .presentation-modal, .lightbox-modal, .reading-progress-track {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .journal-section {
+    page-break-inside: avoid;
+  }
+}

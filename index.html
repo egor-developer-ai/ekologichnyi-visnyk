@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Екологічний вісник №7/2026 — Роль АЕС під час воєнного стану в Україні</title>
+  <meta name="description" content="Науково-учнівський журнал «Екологічний вісник» №7/2026. Дослідницький проєкт Єгора Антонюка (ЗП(ПТ)О «Південноукраїнський професійний коледж») на Всеукраїнський конкурс «Ядерна енергетика і світ».">
+  <link rel="icon" type="image/png" href="assets/images/college_logo.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Індикатор прогресу читання -->
+  <div class="reading-progress-track" aria-hidden="true">
+    <div class="reading-progress-fill" id="readingProgressFill"></div>
+  </div>
+
+  <!-- Верхня плашка коледжу та епіграф -->
+  <div class="top-notice-bar">
+    <div class="container top-notice-content">
+      <div class="college-badge">
+        <img src="assets/images/college_logo.png" alt="Емблема коледжу" class="college-mini-logo">
+        <span>ЗП(ПТ)О «Південноукраїнський професійний коледж» • Всеукраїнський конкурс «Ядерна енергетика і світ»</span>
+      </div>
+      <div class="kant-quote">
+        <span>«Не думки слід навчати, а думати!»</span>
+        <strong>— І. Кант</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Шапка сайту -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#top" class="brand-wrapper">
+        <img src="assets/images/college_logo.png" alt="Логотип ППК" class="brand-logo-img">
+        <div class="brand-text">
+          <h1>Екологічний вісник <span class="issue-tag">№7/2026</span></h1>
+          <div class="brand-subtitle">Науково-учнівський журнал • Спецвипуск для показу</div>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="desktopNav">
+        <li><a href="#intro" class="nav-link">Про номер</a></li>
+        <li><a href="#rubric-1" class="nav-link">Енергосистема</a></li>
+        <li><a href="#rubric-2" class="nav-link">Екологія</a></li>
+        <li><a href="#practice" class="nav-link">АСКРО-аналіз</a></li>
+        <li><a href="#rubric-3" class="nav-link">Захист</a></li>
+        <li><a href="#interview" class="nav-link">Інтерв’ю</a></li>
+        <li><a href="#faq" class="nav-link">Довідник</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" class="btn-presentation" id="openPresentationBtn" title="Відкрити слайд-шоу для показу на захисті (14 слайдів)">
+          <span>▶</span> <span>Режим показу</span>
+        </button>
+        <button type="button" class="btn-icon" id="themeToggleBtn" aria-label="Змінити тему" title="Перемкнути світлу / темну тему">
+          🌙
+        </button>
+        <button type="button" class="btn-icon" id="printBtn" aria-label="Друкувати випуск" title="Друк або збереження у PDF">
+          🖨️
+        </button>
+        <button type="button" class="btn-icon mobile-menu-toggle" id="mobileMenuBtn" aria-label="Меню">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <!-- Мобільне меню -->
+    <nav class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Мобільна навігація">
+      <a href="#intro">Про що піде мова та опитування</a>
+      <a href="#rubric-1">Рубрика 1: Атомна енергетика та ПАЕС</a>
+      <a href="#rubric-2">Рубрика 2: Екологічні та технічні аспекти</a>
+      <a href="#practice">Практична робота: Дані АСКРО</a>
+      <a href="#rubric-3">Рубрика 3: Надійність та 3-рівневий захист</a>
+      <a href="#interview">Інтерв’ю зі спеціалістом ПАЕС</a>
+      <a href="#faq">Довідник читача та вікторина</a>
+      <a href="#afterword">Післямова, висновки та джерела</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ==================================================================
+         HERO-СЕКЦІЯ ТА ОБКЛАДИНКА ВИПУСКУ
+         ================================================================== -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-row">
+            <span class="badge badge-primary">Науково-учнівський журнал</span>
+            <span class="badge badge-eco">Випуск №7 / 2026</span>
+            <span class="badge badge-contest">Конкурс «Ядерна енергетика і світ»</span>
+          </div>
+
+          <h2 class="hero-title">
+            Роль АЕС під час <span class="text-accent">воєнного стану</span> в Україні
+          </h2>
+
+          <p class="hero-description">
+            Спеціальний інтерактивний випуск журналу «Екологічний вісник» про стійкість української атомної генерації, стратегічну роль Південноукраїнського енергокомплексу (ПАЕС), незалежний моніторинг радіаційного фону АСКРО та інженерний захист енергооб’єктів.
+          </p>
+
+          <!-- Відомості про учасника конкурсу -->
+          <div class="hero-meta-card">
+            <div>
+              <div class="meta-item-label">Підготував номер (Автор)</div>
+              <div class="meta-item-value">Антонюк Єгор Іванович</div>
+              <div class="meta-item-sub">2010 р.н., студент гр. 67-р/к ЗП(ПТ)О «Південноукраїнський професійний коледж»</div>
+              <div class="meta-item-sub" style="margin-top: 4px;">Інтереси: ІТ, техніка • Мрія: Одеський національний політехнічний університет</div>
+            </div>
+            <div>
+              <div class="meta-item-label">Науковий керівник</div>
+              <div class="meta-item-value">Мітченко Олена Анатоліївна</div>
+              <div class="meta-item-sub">Викладач біології, спеціаліст вищої категорії, «Викладач-методист»</div>
+              <div class="meta-item-sub" style="margin-top: 4px;">Місто-супутник ПАЕС: Південноукраїнськ</div>
+            </div>
+          </div>
+
+          <div class="hero-btn-row">
+            <button type="button" class="btn-primary" id="heroPresentationBtn">
+              <span>🎬</span> Запустити презентацію (14 слайдів)
+            </button>
+            <a href="#toc" class="btn-secondary">
+              <span>📖</span> Читати журнал онлайн
+            </a>
+            <button type="button" class="btn-secondary" id="viewOriginalCoverBtn">
+              <span>🖼️</span> Друкована обкладинка
+            </button>
+          </div>
+        </div>
+
+        <!-- Макет обкладинки журналу -->
+        <div class="hero-cover-showcase">
+          <div class="journal-cover-frame">
+            <div class="journal-inner-cover">
+              <div class="cover-header">
+                <h3>Науково-учнівський журнал • №7/2026</h3>
+                <h2>ЕКОЛОГІЧНИЙ ВІСНИК</h2>
+              </div>
+              <img src="assets/images/triptych_npp.png" alt="Українські атомні електростанції" class="cover-triptych-img">
+              <div class="cover-body">
+                <div class="cover-issue-topic">Сьогодні у номері: Роль АЕС під час воєнного стану в Україні</div>
+                <ul class="cover-highlights-list">
+                  <li><span class="bullet">01</span> Функціонування атомної енергетики України під час війни</li>
+                  <li><span class="bullet">02</span> Роль ПАЕС, ГЕС і ГАЕС у забезпеченні стійкості Півдня</li>
+                  <li><span class="bullet">03</span> Практичний аналіз даних АСКРО та SaveEcoBot</li>
+                  <li><span class="bullet">04</span> Інтерв’ю з начальником зміни черги ЕБ №2 ПАЕС</li>
+                  <li><span class="bullet">05</span> Трирівневий захист, AP1000 та довідник читача</li>
+                </ul>
+              </div>
+              <div class="cover-author-footer">
+                <img src="assets/images/yehor_antoniuk_author.jpg" alt="Єгор Антонюк" class="cover-author-avatar">
+                <div class="cover-author-info">
+                  <div>Номер підготував:</div>
+                  <strong>Студент ЗП(ПТ)О «ППК» Єгор Антонюк</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ключові цифри номера -->
+    <section class="stats-banner" aria-label="Ключові показники дослідження">
+      <div class="container stats-grid">
+        <div class="stat-box">
+          <div class="stat-number" data-target="9">9</div>
+          <div class="stat-label">Діючих енергоблоків на 3 підконтрольних АЕС</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">~8 ГВт</div>
+          <div class="stat-label">Робоча потужність для базового покриття</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number text-eco">60–67%</div>
+          <div class="stat-label">Частка АЕС у загальному виробництві країни</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number text-eco">0.12</div>
+          <div class="stat-label">Фактичний фон мкЗв/год (норма НРБУ-97: 0.30)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">26.82</div>
+          <div class="stat-label">млрд кВт·год вироблено за І півріччя 2026 р.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Зміст випуску -->
+    <section class="toc-section" id="toc">
+      <div class="container">
+        <div class="section-kicker">📑 Навігація випуском №7/2026</div>
+        <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);">Читайте у нашому номері:</h3>
+
+        <div class="toc-grid">
+          <a href="#intro" class="toc-card">
+            <div>
+              <div class="toc-page-num">Стор. 2–4 • Вступ</div>
+              <h4>Про що піде мова у журналі</h4>
+              <p>Актуальність, мета, завдання та вуличне опитування жителів Південноукраїнська.</p>
+            </div>
+          </a>
+          <a href="#rubric-1" class="toc-card">
+            <div>
+              <div class="toc-page-num">Стор. 5–7 • Рубрика 1</div>
+              <h4>АЕС України у воєнний час</h4>
+              <p>Пошкодження мереж і стабілізуюча роль зв’язки ПАЕС + Ташлицька ГАЕС.</p>
+            </div>
+          </a>
+          <a href="#rubric-2" class="toc-card">
+            <div>
+              <div class="toc-page-num">Стор. 8–11 • Рубрика 2</div>
+              <h4>Екологія та технічні ризики</h4>
+              <p>Вплив обстрілів, захист Південного Бугу, охорона праці та АСКРО.</p>
+            </div>
+          </a>
+          <a href="#practice" class="toc-card">
+            <div>
+              <div class="toc-page-num">Практична робота</div>
+              <h4>Аналіз радіаційного фону</h4>
+              <p>Інтерактивний розбір даних SaveEcoBot та ЕкоЗагроза у 30-км зоні.</p>
+            </div>
+          </a>
+          <a href="#rubric-3" class="toc-card">
+            <div>
+              <div class="toc-page-num">Стор. 12–14 • Рубрика 3</div>
+              <h4>Надійність та майбутнє</h4>
+              <p>Трирівневий захист об’єктів, перехід на Westinghouse, блоки AP1000.</p>
+            </div>
+          </a>
+          <a href="#interview" class="toc-card">
+            <div>
+              <div class="toc-page-num">Ексклюзив номера</div>
+              <h4>Інтерв’ю зі спеціалістом ПАЕС</h4>
+              <p>Розмова з начальником зміни черги ЕБ №2 Пікусом А.О.</p>
+            </div>
+          </a>
+          <a href="#faq" class="toc-card">
+            <div>
+              <div class="toc-page-num">Стор. 17–18 • Додаток 2</div>
+              <h4>Довідник (відповіді читачам)</h4>
+              <p>Найчастіші запитання населення та інтерактивна перевірка знань.</p>
+            </div>
+          </a>
+          <a href="#afterword" class="toc-card">
+            <div>
+              <div class="toc-page-num">Стор. 15, 20 • Підсумки</div>
+              <h4>Післямова та Література</h4>
+              <p>Шість головних висновків дослідження та перевірені джерела.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         ВСТУП, АКТУАЛЬНІСТЬ ТА ОПИТУВАННЯ ГРОМАДИ
+         ================================================================== -->
+    <section class="journal-section survey-section" id="intro">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">🔬 Вступна стаття • Сторінка 2–4</div>
+          <h2 class="section-title">Про що піде мова у нашому журналі «Екологічний вісник»?</h2>
+          <p class="section-lead">
+            «Сьогодні атомна генерація зберегла життя українців. Це факт. Завдяки досвіду, накопиченому в атомній енергетиці, Україна змогла вистояти в найскладніші моменти».
+          </p>
+        </div>
+
+        <div class="callout-banner">
+          <div class="callout-banner-icon">⚛️</div>
+          <div>
+            <h4 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 6px; color: var(--primary);">Актуальність дослідження</h4>
+            <p style="font-size: 0.94rem; color: var(--text-muted); line-height: 1.6;">
+              Внаслідок ворожого нападу на територію України знищено частково чи повністю значну частину теплових та гідроелектростанцій. Через це АЕС України (які забезпечують понад 50–60% генерації, а в окремі періоди 60–67%) змушені працювати як фундамент життєзабезпечення держави та частіше застосовувати нетипові для базової генерації режими балансування енергосистеми.
+            </p>
+          </div>
+        </div>
+
+        <div class="survey-grid">
+          <div class="survey-card">
+            <h3>Діалог з громадою міста-супутника ПАЕС</h3>
+            <p style="font-size: 0.94rem; color: var(--text-muted); margin-bottom: 14px;">
+              Працюючи над номером, ми пройшлися вулицями Південноукраїнська та провели живе опитування містян. Найбільше людей хвилюють питання реальної небезпеки АЕС під час повітряних атак, стабільності електропостачання та екологічного стану довкілля.
+            </p>
+            <p style="font-size: 0.92rem; color: var(--text-main); font-weight: 700; margin-bottom: 8px;">
+              Об’єкт дослідження: <span style="font-weight: 500; color: var(--text-muted);">атомна енергетика України як базовий елемент об'єднаної енергосистеми в умовах воєнного стану (з фокусом на ПАЕС).</span>
+            </p>
+
+            <h4 style="font-size: 1rem; font-weight: 800; margin-top: 18px; color: var(--secondary);">Мета та 4 завдання нашого проєкту:</h4>
+            <ul class="goals-list">
+              <li>
+                <span class="goal-icon">1</span>
+                <span>Проаналізувати стан атомної енергетики України та наслідки пошкоджень інфраструктури в умовах війни.</span>
+              </li>
+              <li>
+                <span class="goal-icon">2</span>
+                <span>Оцінити стабілізуючу роль Південноукраїнського енергокомплексу (у зв'язці з ГЕС і ГАЕС) для Південного регіону.</span>
+              </li>
+              <li>
+                <span class="goal-icon">3</span>
+                <span>Провести власну практичну роботу — аналіз динаміки радіаційного фону за даними системи АСКРО.</span>
+              </li>
+              <li>
+                <span class="goal-icon">4</span>
+                <span>Визначити шляхи підвищення надійності (трирівневий захист, нові блоки, комбінація з ВДЕ) та дати фахові відповіді мешканцям міста.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="survey-photos-duo">
+              <div class="survey-photo-item">
+                <img src="assets/images/survey_photo_1.png" alt="Єгор Антонюк опитує мешканку Південноукраїнська" class="zoomable-img" data-caption="Вуличне інтерв’ю з мешканкою міста-супутника ПАЕС щодо радіаційної безпеки">
+                <div class="survey-photo-caption">Запитуємо думку мешканців Південноукраїнська</div>
+              </div>
+              <div class="survey-photo-item">
+                <img src="assets/images/survey_photo_2.png" alt="Єгор Антонюк спілкується з молоддю міста" class="zoomable-img" data-caption="Опитування молоді міста про стабільність енергосистеми під час війни">
+                <div class="survey-photo-caption">Молодь міста про надійність атомної енергетики</div>
+              </div>
+            </div>
+            <div class="media-showcase-card" style="margin-top: 14px;">
+              <img src="assets/images/paes_rainbow_banner.png" alt="Веселка над Південноукраїнською АЕС та ставком-охолоджувачем" class="zoomable-img" data-caption="Південноукраїнська АЕС — стратегічний щит Півдня України">
+              <div class="media-caption">
+                <span>Південноукраїнська АЕС та Ташлицька водойма-охолоджувач</span>
+                <span>🔍 Клікніть для збільшення</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         РУБРИКА 1: АТОМНА ЕНЕРГЕТИКА УКРАЇНИ В УМОВАХ ВОЄННОГО СТАНУ
+         ================================================================== -->
+    <section class="journal-section" id="rubric-1">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">⚡ Рубрика 1 • Сторінка 5–7</div>
+          <h2 class="section-title">Атомна енергетика України в умовах воєнного стану</h2>
+          <p class="section-lead">
+            У 2026 році в Україні офіційно налічується 4 атомні електростанції загальною встановленою потужністю близько 13,8 ГВт (13 835 МВт). Під повним контролем держави перебувають три з них — Рівненська, Хмельницька та Південноукраїнська (9 енергоблоків сумарно ~7,8–8 ГВт).
+          </p>
+        </div>
+
+        <div class="survey-grid" style="margin-bottom: 28px;">
+          <div>
+            <p style="margin-bottom: 14px; font-size: 0.96rem;">
+              Запорізька АЕС — найбільша в Європі — з 2022 року перебуває під окупацією в режимі «холодного зупину» і не генерує струм для української мережі. Чорнобильська АЕС має статус державного спеціалізованого підприємства на етапі зняття з експлуатації (підтримка об’єкта «Укриття» та поводження з РАВ).
+            </p>
+            <p style="margin-bottom: 14px; font-size: 0.96rem;">
+              Незважаючи на втрату контролю над ЗАЕС, за підсумками <strong>першого півріччя 2026 року</strong> підконтрольні Україні АЕС виробили <strong>26,82 млрд кВт·год</strong> — на 163 млн кВт·год більше, ніж за аналогічний період минулого року. Завдяки оптимізованій ремонтній кампанії вдається мінімізувати одночасне виведення блоків і тримати баланс системи.
+            </p>
+            <div style="background: rgba(239, 68, 68, 0.08); border-left: 4px solid var(--danger); padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+              <strong style="color: var(--danger);">1.1 Пошкодження генеруючих потужностей:</strong>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+                Після масованих ракетно-дронових ударів по ТЕС, ТЕЦ та ДніпроГЕС, агресор цілить у відкриті розподільчі пристрої (<strong>ВРП-330, ВРП-750</strong>) та високовольтні лінії. Коли лінії руйнуються, станція не може видати потужність, і спрацьовує аварійний захист. Пошкодження турбін, генераторів і трансформаторів створює критичний дефіцит.
+              </p>
+            </div>
+          </div>
+          <div class="media-showcase-card">
+            <img src="assets/images/slide_4_npps.png" alt="Чотири атомні електростанції України" class="zoomable-img" data-caption="Запорізька, Рівненська, Хмельницька та Південноукраїнська АЕС (загалом 15 установок)">
+            <div class="media-caption">
+              <span>Огляд 4 атомних електростанцій України (13 835 МВт)</span>
+              <span>🔍 Натисніть</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Фільтр статусів АЕС (Таблиця 1.1) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">Таблиця 1.1. Атомні електростанції України</h3>
+          <div class="filter-pills" id="nppFilterGroup">
+            <button type="button" class="filter-pill active" data-filter="all">Усі станції (4)</button>
+            <button type="button" class="filter-pill" data-filter="active">Під контролем України (3)</button>
+            <button type="button" class="filter-pill" data-filter="occupied">Тимчасово окупована (1)</button>
+          </div>
+        </div>
+
+        <div class="npp-cards-grid" id="nppCardsGrid">
+          <div class="npp-card status-occupied" data-status="occupied">
+            <div class="npp-name">Запорізька АЕС</div>
+            <div class="npp-location">📍 м. Енергодар</div>
+            <div class="npp-specs">
+              <div class="npp-spec-row"><span class="npp-spec-label">Блоки:</span><span class="npp-spec-val">6 × ВВЕР-1000</span></div>
+              <div class="npp-spec-row"><span class="npp-spec-label">Потужність:</span><span class="npp-spec-val">6 000 МВт</span></div>
+              <div class="npp-spec-row"><span class="npp-spec-label">Стан:</span><span class="npp-spec-val">Холодний зупин</span></div>
+            </div>
+            <span class="npp-status-pill">Окупована з 2022 р.</span>
+          </div>
+
+          <div class="npp-card status-active" data-status="active">
+            <div class="npp-name">Рівненська АЕС</div>
+            <div class="npp-location">📍 м. Вараш</div>
+            <div class="npp-specs">
+              <div class="npp-spec-row"><span class="npp-spec-label">Блоки:</span><span class="npp-spec-val">2 ВВЕР-440, 2 ВВЕР-1000</span></div>
+              <div class="npp-spec-row"><span class="npp-spec-label">Потужність:</span><span class="npp-spec-val">~2 835 МВт</span></div>
+              <div class="npp-spec-row"><span class="npp-spec-label">Стан:</span><span class="npp-spec-val">В роботі (4 блоки)</span></div>
+            </div>
+            <span class="npp-status-pill">Під контролем України</span>
+          </div>
+
+          <div class="npp-card status-active" data-status="active">
+            <div class="npp-name">Хмельницька АЕС</div>
+            <div class="npp-location">📍 м. Нетішин</div>
+            <div class="npp-specs">
+              <div class="npp-spec-row"><span class="npp-spec-label">Блоки:</span><span class="npp-spec-val">2 × ВВЕР-1000</span></div>
+              <div class="npp-spec-row"><span class="npp-spec-label">Потужність:</span><span class="npp-spec-val">2 000 МВт</span></div>
+              <div class="npp-spec-row"><span class="npp-spec-label">Плани:</span><span class="npp-spec-val">Добудова 3 і 4 блоків</span></div>
+            </div>
+            <span class="npp-status-pill">Під контролем України</span>
+          </div>
+
+          <div class="npp-card status-active" data-status="active">
+            <div class="npp-name">Південноукраїнська АЕС</div>
+            <div class="npp-location">📍 м. Південноукраїнськ</div>
+            <div class="npp-specs">
+              <div class="npp-spec-row"><span class="npp-spec-label">Блоки:</span><span class="npp-spec-val">3 × ВВЕР-1000</span></div>
+              <div class="npp-spec-row"><span class="npp-spec-label">Потужність:</span><span class="npp-spec-val">3 000 МВт</span></div>
+              <div class="npp-spec-row"><span class="npp-spec-label">Роки пуску:</span><span class="npp-spec-val">1982, 1985, 1989</span></div>
+            </div>
+            <span class="npp-status-pill">Фокус нашого журналу</span>
+          </div>
+        </div>
+
+        <!-- 1.2 Південноукраїнський енергокомплекс -->
+        <div class="complex-interactive-wrapper">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+            <div>
+              <div class="section-kicker">🔋 Розділ 1.2 • Інтерактивна схема</div>
+              <h3 style="font-size: 1.55rem; font-weight: 800; color: var(--primary);">Роль Південноукраїнського енергокомплексу у стійкості Півдня</h3>
+              <p style="font-size: 0.94rem; color: var(--text-muted); max-width: 780px; margin-top: 6px;">
+                Будівництво розпочато у 1976 році як унікального комплексу, де атомна (ПАЕС), гідроелектростанція (Олександрівська ГЕС) та гідроакумулююча станція (Ташлицька ГАЕС) працюють як єдиний злагоджений організм. Клікайте на точки <strong>1–9</strong> на карті, щоб дослідити кожен вузол.
+              </p>
+            </div>
+            <img src="assets/images/paes_panorama.jpg" alt="Панорама ПАЕС" class="zoomable-img" style="width: 170px; height: 95px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--border-color);" data-caption="Південноукраїнська АЕС на березі р. Південний Буг">
+          </div>
+
+          <div class="complex-grid">
+            <div class="complex-map-container">
+              <img src="assets/images/energy_complex_map.jpg" alt="Схема Південноукраїнського енергокомплексу" class="complex-map-img">
+              <button type="button" class="map-point-btn active" data-point="1" style="left: 33%; top: 30%;" title="1. Південноукраїнська АЕС">1</button>
+              <button type="button" class="map-point-btn" data-point="2" style="left: 20%; top: 30%;" title="2. Ташлицький ставок-охолоджувач">2</button>
+              <button type="button" class="map-point-btn" data-point="3" style="left: 33.5%; top: 49%;" title="3. Ташлицька ГАЕС">3</button>
+              <button type="button" class="map-point-btn" data-point="4" style="left: 77%; top: 38%;" title="4. Олександрівський гідровузол">4</button>
+              <button type="button" class="map-point-btn" data-point="5" style="left: 67.5%; top: 56%;" title="5. Олександрівське водосховище">5</button>
+              <button type="button" class="map-point-btn" data-point="6" style="left: 63.5%; top: 66.5%;" title="6. Прибузьке водосховище">6</button>
+              <button type="button" class="map-point-btn" data-point="7" style="left: 19%; top: 42.5%;" title="7. м. Південноукраїнськ">7</button>
+              <button type="button" class="map-point-btn" data-point="8" style="left: 89.5%; top: 28.5%;" title="8. смт. Олександрівка">8</button>
+              <button type="button" class="map-point-btn" data-point="9" style="left: 5%; top: 48%;" title="9. смт. Костянтинівка">9</button>
+            </div>
+
+            <div class="complex-details-panel">
+              <h4 id="complexActiveTitle">1. Південноукраїнська АЕС (ПАЕС)</h4>
+              <p id="complexActiveDesc" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55;">
+                Три енергоблоки ВВЕР-1000 по 1000 МВт (введені у 1982, 1985, 1989 рр.). Основа базової генерації Півдня України. Реактори ВВЕР-1000 не можуть швидко змінювати потужність під час піків, тому їх підстраховують ГЕС і ГАЕС.
+              </p>
+
+              <div class="complex-points-accordion" id="complexPointsList">
+                <!-- Генерується/керується JS -->
+              </div>
+            </div>
+          </div>
+
+          <div class="callout-banner" style="margin-top: 24px; margin-bottom: 0;">
+            <div class="callout-banner-icon">💧</div>
+            <div>
+              <strong>Чому Ташлицька ГАЕС рятує Південь від блек-ауту:</strong>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+                Якщо через пошкодження ЛЕП частота в мережі раптово падає, гідроагрегати Ташлицької ГАЕС здатні <strong>за лічені хвилини</strong> увімкнутися в роботу та видати додаткову маневрову потужність, запобігаючи аварійній зупинці енергоблоків АЕС та масовому знеструмленню регіону.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         РУБРИКА 2: ЕКОЛОГІЧНІ ТА ТЕХНІЧНІ АСПЕКТИ ЕКСПЛУАТАЦІЇ АЕС
+         ================================================================== -->
+    <section class="journal-section" id="rubric-2" style="background: var(--bg-subtle);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">🛡️ Рубрика 2 • Сторінка 8–11</div>
+          <h2 class="section-title">Екологічні та технічні аспекти експлуатації АЕС під час війни</h2>
+          <p class="section-lead">
+            Реактори ВВЕР-440 та ВВЕР-1000 проєктувалися за мирних часів без урахування прямих бойових дій. ПАЕС неодноразово фігурувала у звітах через прольоти російських крилатих ракет і дронів «Шахед» на висоті менше ніж 100–200 метрів над реакторами.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary); margin-bottom: 10px;">
+          2.1 Таблиця 2.1. Технічні виклики експлуатації АЕС та методи протидії
+        </h3>
+        <div class="table-responsive">
+          <table class="custom-data-table">
+            <thead>
+              <tr>
+                <th style="width: 24%;">Технічний виклик</th>
+                <th style="width: 38%;">Опис та наслідки</th>
+                <th style="width: 38%;">Шляхи протидії / Захист</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Удари по видачі потужності</strong></td>
+                <td>Атаки на відкриті розподільчі пристрої (ВРП) та магістральні підстанції. Блокують передачу електроенергії в мережу.</td>
+                <td>Посилення ППО навколо критичних вузлів, зведення першого та другого рівнів інженерного захисту підстанцій.</td>
+              </tr>
+              <tr>
+                <td><strong>Загроза знеструмлення (Blackout)</strong></td>
+                <td>Втрата зовнішнього живлення систем охолодження реакторів і басейнів витримки через пошкодження ЛЕП.</td>
+                <td>Автоматичний перехід на резервні дизель-генератори, забезпечення станцій запасом палива на тривалий термін.</td>
+              </tr>
+              <tr>
+                <td><strong>Криза охолодження (кейс ЗАЕС)</strong></td>
+                <td>Руйнування Каховської ГЕС створило загрозу для гідрологічного режиму ставка-охолоджувача окупованої Запорізької АЕС.</td>
+                <td>Переведення всіх 6 блоків ЗАЕС у режим «холодного зупину» та буріння додаткових підземних свердловин.</td>
+              </tr>
+              <tr>
+                <td><strong>Прольоти ракет та БПЛА</strong></td>
+                <td>Понад 100 ворожих дронів та ракет щомісяця фіксуються в небезпечній близькості до ядерних об’єктів (ризик уламків для бризкальних басейнів).</td>
+                <td>Цілодобовий моніторинг траєкторій, постійна передача даних міжнародним верифікаторам місій МАГАТЕ.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 2.2 Екологічні аспекти -->
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary); margin: 34px 0 12px;">
+          2.2 Екологічні аспекти та захист водної екосистеми
+        </h3>
+        <div class="eco-threats-grid">
+          <div class="threat-card">
+            <span class="threat-icon">📡</span>
+            <h4>Радіаційний фон і контроль</h4>
+            <p>На підконтрольних Україні АЕС радіаційний стан стабільно перебуває в нормі завдяки автоматизованим постам АСКРО. На окупованій ЗАЕС через дії військових РФ періодично виникає ризик втрати зв’язку з постами спостереження.</p>
+          </div>
+          <div class="threat-card">
+            <span class="threat-icon">☢️</span>
+            <h4>Поводження з ВЯП та РАВ</h4>
+            <p>Логістика транспортування відпрацьованого ядерного палива (ВЯП) та радіоактивних відходів (РАВ) суттєво ускладнена обстрілами шляхів сполучення, що змушує організовувати безпечне накопичення на майданчиках АЕС.</p>
+          </div>
+          <div class="threat-card">
+            <span class="threat-icon">🌊</span>
+            <h4>Басейн Південного Бугу</h4>
+            <p>Для енергокомплексу ПАЕС критичним є захист річки Південний Буг, Ташлицького та Олександрівського водосховищ: ведеться постійний контроль температури скидної води та хімічного складу, щоб не допустити теплового забруднення й цвітіння вод.</p>
+          </div>
+        </div>
+
+        <!-- Галерея охорони праці та екологічного середовища -->
+        <div class="survey-grid" style="margin-top: 20px;">
+          <div class="media-showcase-card">
+            <img src="assets/images/pivdenny_buh_canyon.jpg" alt="Річка Південний Буг та місто Південноукраїнськ" class="zoomable-img" data-caption="Долина річки Південний Буг поблизу Південноукраїнська — унікальна екосистема, що перебуває під постійним гідрологічним контролем">
+            <div class="media-caption">
+              <span>Екосистема р. Південний Буг та м. Південноукраїнськ</span>
+              <span>🔍 Клікніть</span>
+            </div>
+          </div>
+          <div class="media-showcase-card">
+            <img src="assets/images/safety_labor_protection.png" alt="Заходи з охорони праці працівників на АЕС" class="zoomable-img" data-caption="Індивідуальний захист персоналу та робота з ізотопами на АЕС">
+            <div class="media-caption">
+              <span>Охорона праці та радіаційний захист персоналу</span>
+              <span>🔍 Клікніть</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="survey-grid" style="margin-top: 20px;">
+          <div class="media-showcase-card">
+            <img src="assets/images/civil_defense_measures.png" alt="Система аварійної готовності та реагування" class="zoomable-img" data-caption="Основні завдання Системи аварійної готовності та реагування на АЕС">
+            <div class="media-caption">
+              <span>Система аварійної готовності та цивільний захист</span>
+              <span>🔍 Клікніть</span>
+            </div>
+          </div>
+          <div class="media-showcase-card">
+            <img src="assets/images/slide_iaea.png" alt="Міжнародне агентство з атомної енергії МАГАТЕ" class="zoomable-img" data-caption="Постійна міжнародна верифікація ядерної безпеки місіями МАГАТЕ (IAEA)">
+            <div class="media-caption">
+              <span>Міжнародний моніторинг: МАГАТЕ та WANO</span>
+              <span>🔍 Клікніть</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         ПРАКТИЧНА РОБОТА: АНАЛІЗ РАДІАЦІЙНОГО ФОНУ ЗА ДАНИМИ АСКРО
+         ================================================================== -->
+    <section class="journal-section" id="practice">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">📊 Розділ 2.4 • Практична робота автора</div>
+          <h2 class="section-title">Аналіз радіаційного фону м. Південноукраїнська та 30-км зони (дані АСКРО)</h2>
+          <p class="section-lead">
+            У межах проєкту проведено власний мікроаналіз потужності експозиційної дози (ПЕД) гамма-випромінювання за даними платформ <strong>SaveEcoBot</strong> та <strong>«ЕкоЗагроза»</strong> у різні періоди 2026 року.
+          </p>
+        </div>
+
+        <div class="practice-showcase">
+          <div class="practice-grid">
+            <!-- Інтерактивний SVG Графік -->
+            <div class="chart-card">
+              <div class="chart-header">
+                <h4>Порівняння фактичного фону з нормою НРБУ-97</h4>
+                <button type="button" class="filter-pill" id="showOriginalChartBtn" style="font-size: 0.78rem;">
+                  📈 Оригінальний графік
+                </button>
+              </div>
+
+              <div class="svg-chart-container" id="radiationSvgChart">
+                <!-- Інтерактивний SVG рендериться через JS -->
+              </div>
+
+              <div class="chart-legend">
+                <div class="legend-item">
+                  <span class="legend-color-box" style="background: #2563eb;"></span>
+                  <span>Фактичний рівень радіації (мкЗв/год)</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color-box" style="background: #ea580c;"></span>
+                  <span>Допустима санітарна межа НРБУ-97 (0.30 мкЗв/год)</span>
+                </div>
+              </div>
+
+              <p id="chartHoverDetail" style="font-size: 0.85rem; color: var(--info); font-weight: 600; margin-top: 12px; min-height: 22px;">
+                Наведіть або натисніть на стовпчик графіка, щоб побачити деталі періоду.
+              </p>
+            </div>
+
+            <!-- Інтерактивний монітор населених пунктів Миколаївщини -->
+            <div class="settlement-browser">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h4>Пости моніторингу Миколаївщини</h4>
+                <span style="font-size: 0.75rem; color: var(--secondary-light); font-weight: 700;">SaveEcoBot</span>
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">
+                Оберіть населений пункт для порівняння з санітарним лімітом 0.30 мкЗв/год:
+              </p>
+
+              <div class="settlement-chips-grid" id="settlementChipsGrid">
+                <!-- Заповнюється з JS за реальними даними таблиці -->
+              </div>
+
+              <div class="settlement-detail-card" id="settlementDetailCard">
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; font-weight: 700;">Обраний пункт</div>
+                  <div id="selSettlementName" style="font-size: 1.05rem; font-weight: 800;">Південноукраїнськ (місто)</div>
+                  <div class="safety-meter-track">
+                    <div class="safety-meter-fill" id="selSafetyBar" style="width: 37%;"></div>
+                  </div>
+                  <div id="selComparisonText" style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+                    У 2.7 раза нижче допустимої межі (0.30 мкЗв/год)
+                  </div>
+                </div>
+                <div style="text-align: right;">
+                  <div id="selSettlementVal" style="font-size: 1.6rem; font-weight: 900; font-family: var(--font-mono); color: var(--secondary-light);">0.110</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">мкЗв/год</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Оригінальні скріншоти карти та таблиці SaveEcoBot -->
+          <div class="survey-grid" style="margin-top: 24px;">
+            <div class="media-showcase-card">
+              <img src="assets/images/radiation_map_saveecobot.png" alt="Карта радіаційного фону Південноукраїнська SaveEcoBot" class="zoomable-img" data-caption="Дані постів гамма-моніторингу навколо м. Південноукраїнськ (0.10–0.13 мкЗв/год)">
+              <div class="media-caption">
+                <span>Карта постів АСКРО / SaveEcoBot (Південноукраїнськ)</span>
+                <span>🔍 Збільшити</span>
+              </div>
+            </div>
+            <div class="media-showcase-card">
+              <img src="assets/images/radiation_table_saveecobot.png" alt="Інші населені пункти Миколаївської області" class="zoomable-img" data-caption="Зафіксовані показники радіаційного фону у населених пунктах Миколаївської області">
+              <div class="media-caption">
+                <span>Зведення постів Миколаївської області (ЕкоЗагроза)</span>
+                <span>🔍 Збільшити</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-conclusion-box">
+            <strong>Висновок практичної роботи:</strong> Природний фон регіону становить <strong>0,10–0,14 мкЗв/год</strong> (зумовлений гранітними відкладеннями та природними ізотопами ґрунту). У штатному режимі (серпень 2026 р.) фон становив <strong>0,11–0,13 мкЗв/год</strong>, а під час масованих обстрілів підстанцій (жовтень 2026 р.) — <strong>0,10–0,12 мкЗв/год</strong>. Крива реального радіаційного стану абсолютно стабільна та більш ніж удвічі нижча за граничну норму НРБУ-97 (<strong>0,30 мкЗв/год</strong>). Система захисних бар’єрів АЕС гарантує стовідсоткову екологічну безпеку регіону.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         РУБРИКА 3: ШЛЯХИ ПІДВИЩЕННЯ НАДІЙНОСТІ ТА МАЙБУТНЄ
+         ================================================================== -->
+    <section class="journal-section" id="rubric-3" style="background: var(--bg-subtle);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">🚀 Рубрика 3 • Сторінка 12–14</div>
+          <h2 class="section-title">Шляхи підвищення надійності та майбутнє атомної енергетики</h2>
+          <p class="section-lead">
+            На українських АЕС впроваджується Комплексна зведена програма підвищення безпеки (КЗПБ), спрямована на захист від повного знеструмлення, посилення фізичної стійкості та стратегічну модернізацію енергоблоків.
+          </p>
+        </div>
+
+        <!-- 3.1 Заходи протидії -->
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary); margin-bottom: 14px;">
+          3.1 Заходи протидії загрозам та забезпечення ядерної безпеки
+        </h3>
+        <div class="npp-cards-grid">
+          <div class="npp-card status-active">
+            <div style="font-size: 1.7rem; margin-bottom: 8px;">🛡️</div>
+            <div class="npp-name" style="font-size: 1.05rem;">Щільна ППО та ПРО</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">
+              Безпосередньо навколо атомних станцій розгорнуто зони протиповітряної та протидронової оборони для перехоплення ворожих ракет і БПЛА.
+            </p>
+          </div>
+          <div class="npp-card status-active">
+            <div style="font-size: 1.7rem; margin-bottom: 8px;">🌐</div>
+            <div class="npp-name" style="font-size: 1.05rem;">Постійні місії МАГАТЕ</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">
+              Міжнародні експерти постійно працюють на всіх АЕС України, фіксуючи будь-які аномалії та загрози через обстріли суміжної мережі.
+            </p>
+          </div>
+          <div class="npp-card status-active">
+            <div style="font-size: 1.7rem; margin-bottom: 8px;">⚙️</div>
+            <div class="npp-name" style="font-size: 1.05rem;">Автономізація живлення</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">
+              Автоматика переводить блоки на власні потреби, або вмикаються резервні дизель-генератори, що підтримують надійне охолодження палива.
+            </p>
+          </div>
+          <div class="npp-card status-active">
+            <div style="font-size: 1.7rem; margin-bottom: 8px;">🇺🇸</div>
+            <div class="npp-name" style="font-size: 1.05rem;">Паливо Westinghouse</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">
+              «Енергоатом» на 100% перейшов на ядерне паливо американської компанії Westinghouse, ліквідувавши залежність від РФ.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3.2 Інтерактивний трирівневий захист -->
+        <div class="defense-simulator">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div>
+              <div class="section-kicker">🏗️ Розділ 3.2 • Інтерактивний огляд</div>
+              <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">Трирівневий підхід до інженерного захисту енергооб’єктів</h3>
+            </div>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 18px;">
+            Оскільки самі гермооболонки реакторів здатні витримати навіть падіння легкого літака, найбільш уразливими цілями є відкриті розподільчі пристрої (ВРП) та силові трансформатори. Оберіть рівень захисту для детального перегляду:
+          </p>
+
+          <div class="tier-tabs" id="tierTabs">
+            <button type="button" class="tier-tab-btn active" data-tier="1">1-й рівень: Уламки та хвиля</button>
+            <button type="button" class="tier-tab-btn" data-tier="2">2-й рівень: Захист від БПЛА</button>
+            <button type="button" class="tier-tab-btn" data-tier="3">3-й рівень: Саркофаги від ракет</button>
+          </div>
+
+          <div class="tier-sim-panel" id="tierSimPanel">
+            <div>
+              <span class="tier-number-badge" id="simTierBadge">РІВЕНЬ ІНЖЕНЕРНОГО ЗАХИСТУ №1</span>
+              <h4 id="simTierTitle" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">Захист від уламків та вибухової хвилі (Габіони та блоки)</h4>
+              <div id="simTierTarget" class="tier-target">Призначення: Відкриті трансформатори та розподільчі майданчики</div>
+              <p id="simTierDesc" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+                Трансформатори обносять масивними спорудами із залізобетонних блоків та габіонів, заповнених піском або гранітним відсівом. Такий бар’єр повністю нівелює дію уламків ракет і дронів у разі близького вибуху, ефективно гасить ударну хвилю.
+              </p>
+            </div>
+            <div style="text-align: center; padding: 16px; background: var(--bg-subtle); border-radius: var(--radius-md); border: 1px dashed var(--border-color);" id="simTierVisual">
+              <!-- Інтерактивна схема SVG оновлюється через JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.3 Плани розвитку та Зелений перехід -->
+        <div class="future-tech-grid">
+          <div class="future-tech-card">
+            <h4>3.3 Плани розвитку: блоки AP1000 та SMR</h4>
+            <p>
+              Ключовий вектор майбутнього — відхід від радянських стандартів та перехід на передову американську технологію <strong>АР1000 компанії Westinghouse</strong>:
+            </p>
+            <ul class="goals-list" style="margin-top: 8px;">
+              <li><span class="goal-icon">✓</span><span>Добудова 3-го і 4-го енергоблоків на Хмельницькій АЕС.</span></li>
+              <li><span class="goal-icon">✓</span><span>Інженерно-вишукувальні роботи для будівництва <strong>блоків №4 та №5 на Південноукраїнській АЕС</strong>.</span></li>
+              <li><span class="goal-icon">✓</span><span>Опрацювання розміщення малих модульних реакторів (SMR) на існуючих майданчиках.</span></li>
+              <li><span class="goal-icon">✓</span><span>Стратегічна державна мета — досягнення <strong>25 ГВт</strong> атомної генерації до 2050 року.</span></li>
+            </ul>
+          </div>
+
+          <div class="future-tech-card">
+            <h4>«Зелений» перехід: формула АЕС + ВДЕ + ГАЕС</h4>
+            <p>
+              Атомна енергетика стала головним чинником безвуглецевого переходу України, забезпечуючи понад половину всієї чистої генерації та мінімізуючи викиди CO₂ навіть під час війни.
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px;">
+              <img src="assets/images/green_energy_vector.jpg" alt="Синергія ВДЕ та АЕС" class="zoomable-img" style="border-radius: var(--radius-sm); height: 155px; width: 100%; object-fit: cover;" data-caption="Модель майбутньої енергосистеми: АЕС + ВДЕ (вітер, сонце) + ГАЕС">
+              <img src="assets/images/green_transition_co2.png" alt="Декарбонізація та зниження CO2" class="zoomable-img" style="border-radius: var(--radius-sm); height: 155px; width: 100%; object-fit: cover;" data-caption="Безвуглецева генерація як основа екологічної безпеки України">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         ЕКСКЛЮЗИВ: ІНТЕРВ'Ю З НАЧАЛЬНИКОМ ЗМІНИ ЧЕРГИ ЕБ №2 ПАЕС
+         ================================================================== -->
+    <section class="journal-section interview-section" id="interview">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">🎙️ Спеціальний репортаж журналу</div>
+          <h2 class="section-title">Відверто про безпеку: інтерв’ю зі спеціалістом ПАЕС</h2>
+          <p class="section-lead">
+            Щоб дати об’єктивні відповіді на хвилюючі запитання жителів міста-супутника, редакція журналу поспілкувалася безпосередньо з фахівцем Південноукраїнської АЕС.
+          </p>
+        </div>
+
+        <div class="interview-wrapper">
+          <div class="interview-hero-row">
+            <div class="interview-hero-img-wrap">
+              <img src="assets/images/interview_artem_pikus.jpg" alt="Інтерв'ю Єгора Антонюка з Артемом Пікусом" class="zoomable-img" data-caption="Студент Єгор Антонюк бере інтерв’ю у Начальника зміни черги другого енергоблока ПАЕС Артема Пікуса">
+            </div>
+            <div class="interview-person-meta">
+              <span class="role-pill">Начальник зміни черги другого енергоблоку ПАЕС</span>
+              <h3>Пікус Артем Олександрович</h3>
+              <p>
+                Розповів нашим читачам про реальну роботу 44 постів радіаційного контролю, заходи захисту річки Південний Буг під час нерівномірних режимів навантаження, надійність трьох систем безпеки на енергоблоках та постійні протиаварійні тренування персоналу.
+              </p>
+            </div>
+          </div>
+
+          <div class="interview-qa-stream">
+            <div class="qa-card">
+              <div class="qa-question">
+                <span class="qa-q-badge">01</span>
+                <span>Як змінилися протоколи радіаційного та екологічного моніторингу довкілля після 24 лютого 2022 року?</span>
+              </div>
+              <div class="qa-answer">
+                Протоколи радіаційного та екологічного моніторингу після 24 лютого 2022 року не змінилися — на АЕС та за її межами ведеться достатній і безперервний контроль. Радіаційний контроль охоплює промисловий майданчик АЕС, санітарно-захисну зону (радіус 2,5 км) та зону спостереження (радіус 30 км). Гамма-фон відстежується на <strong>44 постах у 30-км зоні</strong> та на контрольному посту в <strong>с. Рябоконеве (33,5 км від філії «ВП ПАЕС»)</strong>. Вимірюється концентрація радіонуклідів у воді, донних відкладеннях, гідробіонтах, ґрунті, рослинності, сільгосппродукції, атмосферному повітрі та опадах.
+              </div>
+            </div>
+
+            <div class="qa-card">
+              <div class="qa-question">
+                <span class="qa-q-badge">02</span>
+                <span>Які заходи вживаються для захисту водного басейну Південного Бугу та Ташлицького водосховища під час роботи блоків у нерівномірних режимах?</span>
+              </div>
+              <div class="qa-answer">
+                Нерівномірні режими (зміна потужності, розвантаження, навантаження, зупинка та пуск енергоблоків) контролюються спеціальним комплексом заходів для недопущення теплового або хімічного навантаження на водні екосистеми:
+                <ul>
+                  <li>Постійний контроль температурного режиму скидної води;</li>
+                  <li>Контроль водного балансу (рівні в Ташлицькому водосховищі, витрата води у р. Південний Буг, випаровування, продувка);</li>
+                  <li>Регулярний хімічний та екологічний відбір проб;</li>
+                  <li>Систематичний гідрологічний та метеорологічний контроль.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="qa-card">
+              <div class="qa-question">
+                <span class="qa-q-badge">03</span>
+                <span>Наскільки надійно захищені автономні системи охолодження на випадок знеструмлення зовнішніх ліній?</span>
+              </div>
+              <div class="qa-answer">
+                На випадок повного знеструмлення на енергоблоці №2 функціонують надійні системи безпеки, які оперативно переведуть реакторну установку в підкритичний стан. На ЕБ передбачено <strong>3 незалежні системи безпеки</strong>, які безперебійно працюватимуть навіть за повної відсутності зовнішнього електроживлення завдяки аварійним дизельним генераторам.
+              </div>
+            </div>
+
+            <div class="qa-card">
+              <div class="qa-question">
+                <span class="qa-q-badge">04</span>
+                <span>Наскільки безпечна ситуація на підконтрольних Україні АЕС сьогодні?</span>
+              </div>
+              <div class="qa-answer">
+                Ситуація на підконтрольних АЕС залишається контрольованою і безпечною. Персонал керується чіткими інструкціями з ліквідації порушень та аварійних ситуацій і регулярно відпрацьовує всі сценарії на <strong>повномасштабному тренажері</strong>. Автоматика та системи безпеки унеможливлюють вихід радіоактивних речовин за межі герметичного об’єму, а міжнародні представники <strong>МАГАТЕ</strong> постійно контролюють аварійну готовність безпосередньо на майданчиках станцій.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         ДОДАТОК 2: ДОВІДНИК ДЛЯ НАСЕЛЕННЯ (FAQ) ТА ЕКСПРЕС-ВІКТОРИНА
+         ================================================================== -->
+    <section class="journal-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">📘 Додаток 2 • Сторінка 18–19</div>
+          <h2 class="section-title">Довідник «Найчастіші запитання про АЕС України»</h2>
+          <p class="section-lead">
+            Короткі та зрозумілі відповіді читачам журналу «Екологічний вісник» на найгостріші побутові й технічні питання воєнного часу.
+          </p>
+        </div>
+
+        <div class="faq-grid" id="faqAccordion">
+          <div class="accordion-item active">
+            <div class="accordion-header">
+              <span>Скільки енергоблоків зараз працює під контролем України?</span>
+              <span class="accordion-icon">▾</span>
+            </div>
+            <div class="accordion-body">
+              Під контролем України стабільно працюють <strong>9 енергоблоків на трьох атомних станціях</strong> (Південноукраїнська — 3, Рівненська — 4, Хмельницька — 2) загальною потужністю близько 7,8–8 ГВт.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Чи виробляє зараз електроенергію Запорізька АЕС?</span>
+              <span class="accordion-icon">▾</span>
+            </div>
+            <div class="accordion-body">
+              <strong>Ні.</strong> Усі шість енергоблоків ЗАЕС перебувають у режимі «холодного зупину» з 2022 року через російську окупацію і не постачають електроенергію в українську енергомережу.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Чому діють графіки відключення світла?</span>
+              <span class="accordion-icon">▾</span>
+            </div>
+            <div class="accordion-body">
+              Графіки застосовуються через дефіцит генеруючих та пропускних потужностей після ударів по ТЕС, ГЕС і підстанціях. Це вимушений технічний механізм балансування системи, що рятує країну від повного аварійного блек-ауту.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Чи потрібно економити електроенергію вдома?</span>
+              <span class="accordion-icon">▾</span>
+            </div>
+            <div class="accordion-body">
+              <strong>Так.</strong> Зменшення побутового навантаження в ранкові та вечірні пікові години знижує дефіцит потужності в об’єднаній мережі й допомагає зменшити тривалість планових обмежень.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Чому в мороз зростає ризик відключень?</span>
+              <span class="accordion-icon">▾</span>
+            </div>
+            <div class="accordion-body">
+              Узимку електроенергія масово використовується не лише для освітлення і приладів, а й для обігріву приміщень. Споживання різко зростає, що посилює навантаження на пошкоджену інфраструктуру.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Коли планують запустити нові блоки ХАЕС і чи повернеться ЗАЕС?</span>
+              <span class="accordion-icon">▾</span>
+            </div>
+            <div class="accordion-body">
+              На Хмельницькій АЕС тривають підготовчі роботи (строки залежать від фінансування і технологій AP1000). Щодо ЗАЕС — «Енергоатом» має план підготовки її блоків до довгострокової безпечної експлуатації одразу після деокупації та міжнародного аудиту.
+            </div>
+          </div>
+        </div>
+
+        <!-- Експрес-вікторина для інтерактивного показу -->
+        <div class="quiz-container" id="energyQuiz">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <div class="section-kicker">🎯 Інтерактивна перевірка</div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--primary);">Міні-вікторина від «Екологічного вісника»</h3>
+            </div>
+            <span id="quizScoreBadge" class="badge badge-eco">Питання 1 з 4 • Бали: 0</span>
+          </div>
+
+          <div id="quizBody" style="margin-top: 16px;">
+            <!-- Генерується JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         ПІСЛЯМОВА, ВИСНОВКИ ТА СПИСОК ЛІТЕРАТУРИ
+         ================================================================== -->
+    <section class="journal-section" id="afterword" style="background: var(--bg-subtle);">
+      <div class="container">
+        <div class="conclusions-showcase">
+          <div class="conclusions-grid">
+            <div>
+              <div class="section-kicker" style="color: #fde68a;">🏁 Післямова • Сторінка 15–16</div>
+              <h2 class="conclusions-title">Головні висновки дослідницької роботи</h2>
+              <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 20px;">
+                Населення має бути поінформованим про реальний стан надійності і захисту енергосистеми. Проаналізувавши теорію, дані АСКРО та думку фахівця, ми дійшли шести висновків:
+              </p>
+
+              <div class="conclusion-cards-list">
+                <div class="conclusion-item">
+                  <span class="conclusion-num">1</span>
+                  <div class="conclusion-text">АЕС стали головним фактором стримування енергетичного колапсу (блек-ауту) України під час війни.</div>
+                </div>
+                <div class="conclusion-item">
+                  <span class="conclusion-num">2</span>
+                  <div class="conclusion-text">Поєднання в одному вузлі ПАЕС, Ташлицької ГАЕС та Олександрівської ГЕС створює унікальну гнучкість маневрування потужностями.</div>
+                </div>
+                <div class="conclusion-item">
+                  <span class="conclusion-num">3</span>
+                  <div class="conclusion-text">Власний аналіз даних АСКРО дозволяє об’єктивно оцінювати стабільну безпеку довкілля (0.10–0.13 мкЗв/год) та протидіяти дезінформації.</div>
+                </div>
+                <div class="conclusion-item">
+                  <span class="conclusion-num">4</span>
+                  <div class="conclusion-text">Повний перехід на ядерне паливо американської компанії Westinghouse став історичним кроком до геополітичної безпеки галузі.</div>
+                </div>
+                <div class="conclusion-item">
+                  <span class="conclusion-num">5</span>
+                  <div class="conclusion-text">АЕС забезпечують безвуглецеву генерацію; модель «АЕС + ВДЕ + ГАЕС» формує майбутню стійку енергосистему України.</div>
+                </div>
+                <div class="conclusion-item">
+                  <span class="conclusion-num">6</span>
+                  <div class="conclusion-text">Визначено конкретні шляхи підвищення надійності ПАЕС (ППО, 3 рівні інженерного захисту, нові блоки) та створено довідник для містян.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="conclusions-author-card">
+              <img src="assets/images/yehor_control_room.jpg" alt="Антонюк Єгор біля щита управління ПАЕС" class="zoomable-img" data-caption="Антонюк Єгор на базі Південноукраїнської АЕС">
+              <h4>Антонюк Єгор Іванович</h4>
+              <p>Студент групи 67-р/к ЗП(ПТ)О «Південноукраїнський професійний коледж»</p>
+              <p style="color: #fde68a; font-weight: 600;">Науковий керівник: Мітченко Олена Анатоліївна</p>
+              <img src="assets/images/green_eco_bulb.jpg" alt="Екологічна енергія" style="width: 90px; height: 60px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.3); margin: 14px auto;">
+              <button type="button" class="btn-presentation" id="footerPresentationBtn" style="margin-top: 8px; width: 100%; justify-content: center;">
+                ▶ Переглянути презентацію проєкту
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Список використаних джерел -->
+        <div style="margin-top: 44px;">
+          <div class="section-kicker">📚 Бібліографія • Сторінка 20</div>
+          <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--primary);">Список використаних джерел інформації</h3>
+          <ul class="sources-list">
+            <li class="source-item">
+              <span class="source-badge">[1]</span>
+              <a href="https://www.dsns.gov.ua" target="_blank" rel="noopener">Державна служба України з надзвичайних ситуацій (ДСНС)</a>
+            </li>
+            <li class="source-item">
+              <span class="source-badge">[2]</span>
+              <a href="https://visnyk-nanu.org.ua/aes-ukrayiny-povnyj-oglyad-stanu-potuzhnostej-i-bezpeky-u-2026-roczi/" target="_blank" rel="noopener">Вісник НАН України: Огляд стану потужностей і безпеки АЕС у 2026 р.</a>
+            </li>
+            <li class="source-item">
+              <span class="source-badge">[3]</span>
+              <a href="https://www.saveecobot.com/radiation/mykolaivska-oblast/yuzhnoukrainsk" target="_blank" rel="noopener">SaveEcoBot: Карта радіаційного моніторингу Південноукраїнська</a>
+            </li>
+            <li class="source-item">
+              <span class="source-badge">[4]</span>
+              <a href="https://voznesensk.rayon.in.ua/news/1078425-iaka-situaciia-z-radiaciinim-fonom-u-pivdennoukrayinskii-gromadi-oficiini-dani" target="_blank" rel="noopener">Офіційні дані щодо радіаційного фону в Південноукраїнській громаді</a>
+            </li>
+            <li class="source-item">
+              <span class="source-badge">[5]</span>
+              <a href="https://pivdennoukrainsk.ukray.city/news/short/radiatsiinyi-fon-u-pivdennoukrainskii-hromadi-28-zhovtnia-u-normi" target="_blank" rel="noopener">Стан радіаційного фону в громаді (жовтневі виміри)</a>
+            </li>
+            <li class="source-item">
+              <span class="source-badge">[6]</span>
+              <a href="https://energoatom.com.ua/environmental-protection" target="_blank" rel="noopener">НАЕК «Енергоатом»: Охорона навколишнього природного середовища</a>
+            </li>
+            <li class="source-item">
+              <span class="source-badge">[7]</span>
+              <a href="http://mpe.kmu.gov.ua/minugol/control/uk/publish/officialcategory?cat_id=244896105" target="_blank" rel="noopener">Офіційний портал Міністерства енергетики України</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Футер сайту -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Науково-учнівський журнал «Екологічний вісник» №7/2026</h3>
+          <p>
+            Електронне видання та презентаційний вебсайт дослідницького проєкту на Всеукраїнський конкурс рефератів серед учнівської молоді «Ядерна енергетика і світ».
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Рубрики випуску</h4>
+          <ul class="footer-links">
+            <li><a href="#intro">Вступ та опитування містян</a></li>
+            <li><a href="#rubric-1">Рубрика 1: АЕС під час війни</a></li>
+            <li><a href="#rubric-2">Рубрика 2: Екологія та АСКРО</a></li>
+            <li><a href="#rubric-3">Рубрика 3: Надійність та захист</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Інтерактивні розділи</h4>
+          <ul class="footer-links">
+            <li><a href="#practice">Практична робота АСКРО</a></li>
+            <li><a href="#interview">Інтерв’ю зі спеціалістом</a></li>
+            <li><a href="#faq">Довідник читача та вікторина</a></li>
+            <li><a href="#" id="footerSlideLink">Відкрити 14 слайдів презентації</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ЗП(ПТ)О «Південноукраїнський професійний коледж» • Автор: Антонюк Єгор</span>
+        <span>Керівник: Мітченко О.А. • м. Південноукраїнськ</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================================================================
+       МОДАЛЬНЕ ВІКНО: РЕЖИМ ПРЕЗЕНТАЦІЇ (SHOWCASE 14 SLIDES DECK)
+       ================================================================== -->
+  <div class="presentation-modal" id="presentationModal" role="dialog" aria-modal="true" aria-label="Режим презентації проєкту">
+    <div class="deck-top-bar">
+      <div class="deck-title">
+        <span>🎬</span>
+        <span>Захист проєкту: «Роль АЕС під час воєнного стану в Україні»</span>
+      </div>
+      <div class="deck-controls">
+        <span class="deck-timer" id="deckTimer" title="Таймер доповіді">00:00</span>
+        <button type="button" class="deck-btn" id="toggleTimerBtn">▶ Старт таймера</button>
+        <button type="button" class="deck-btn" id="fullscreenDeckBtn" title="На весь екран (F)">⛶ Повний екран</button>
+        <button type="button" class="deck-btn deck-btn-close" id="closePresentationBtn" title="Закрити (Esc)">✕ Вийти</button>
+      </div>
+    </div>
+
+    <div class="slide-progress-track">
+      <div class="slide-progress-fill" id="slideProgressFill" style="width: 7.14%;"></div>
+    </div>
+
+    <div class="deck-stage-area">
+      <button type="button" class="slide-nav-prev" id="prevSlideBtn" title="Попередній слайд (←)">‹</button>
+      <div class="slide-canvas" id="slideCanvas">
+        <!-- Динамічний контент слайда 1..14 рендериться через JS -->
+      </div>
+      <button type="button" class="slide-nav-next" id="nextSlideBtn" title="Наступний слайд (→)">›</button>
+    </div>
+
+    <div class="deck-bottom-bar">
+      <div id="slideCounterText" style="font-weight: 700;">Слайд 1 з 14</div>
+      <div class="slide-thumbnails-strip" id="slideThumbnailsStrip">
+        <!-- Кнопки 1..14 -->
+      </div>
+      <div style="color: #94a3b8; font-size: 0.78rem;">Керування: ← → або Пробіл • Esc — вихід</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================
+       LIGHTBOX ДЛЯ ЗБІЛЬШЕННЯ ФОТО, КАРТ І ОБКЛАДИНКИ
+       ================================================================== -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true">
+    <button type="button" class="lightbox-close" id="lightboxCloseBtn" aria-label="Закрити">✕</button>
+    <div class="lightbox-inner">
+      <img src="" alt="" id="lightboxImg">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
