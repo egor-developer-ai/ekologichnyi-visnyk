@@ -2521,24 +2521,23 @@ button {
 .switcher-tabs {
   display: flex;
   align-items: center;
-  gap: 8px;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  gap: 6px;
   flex: 1;
   min-width: 240px;
   padding: 2px 0;
-  scrollbar-width: thin;
 }
 
 .switcher-tab {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
+  gap: 5px;
+  padding: 5px 10px;
   border-radius: var(--radius-full);
   border: 1px solid var(--border-color);
   background: var(--bg-subtle);
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   white-space: nowrap;
   transition: var(--transition);
