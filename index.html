@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Екологічний вісник №7/2026 — Роль АЕС під час воєнного стану в Україні</title>
-  <meta name="description" content="Науково-учнівський журнал «Екологічний вісник» №7/2026. Дослідницький проєкт Єгора Антонюка (ЗП(ПТ)О «Південноукраїнський професійний коледж») на Всеукраїнський конкурс «Ядерна енергетика і світ».">
+  <title>Екологічний вісник — Науково-учнівський журнал коледжу</title>
+  <meta name="description" content="Портал науково-учнівського журналу «Екологічний вісник» ЗП(ПТ)О «Південноукраїнський професійний коледж»: дослідження учасників конкурсу «Ядерна енергетика і світ», статті, презентації та новини.">
   <link rel="icon" type="image/png" href="assets/images/college_logo.png">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -19,7 +19,7 @@
     <div class="container top-notice-content">
       <div class="college-badge">
         <img src="assets/images/college_logo.png" alt="Емблема коледжу" class="college-mini-logo">
-        <span>ЗП(ПТ)О «Південноукраїнський професійний коледж» • Всеукраїнський конкурс «Ядерна енергетика і світ»</span>
+        <span>ЗП(ПТ)О «Південноукраїнський професійний коледж» • Журнал «Екологічний вісник»</span>
       </div>
       <div class="kant-quote">
         <span>«Не думки слід навчати, а думати!»</span>
@@ -31,26 +31,24 @@
   <!-- Шапка сайту -->
   <header class="site-header">
     <div class="container nav-container">
-      <a href="#top" class="brand-wrapper">
+      <a href="#top" class="brand-wrapper" id="brandTopLink">
         <img src="assets/images/college_logo.png" alt="Логотип ППК" class="brand-logo-img">
         <div class="brand-text">
-          <h1>Екологічний вісник <span class="issue-tag">№7/2026</span></h1>
-          <div class="brand-subtitle">Науково-учнівський журнал • Спецвипуск для показу</div>
+          <h1>Екологічний вісник <span class="issue-tag" id="headerIssueTag">№7/2026</span></h1>
+          <div class="brand-subtitle">Науково-учнівський журнал • Портал випусків</div>
         </div>
       </a>
 
       <ul class="nav-links" id="desktopNav">
-        <li><a href="#intro" class="nav-link">Про номер</a></li>
-        <li><a href="#rubric-1" class="nav-link">Енергосистема</a></li>
-        <li><a href="#rubric-2" class="nav-link">Екологія</a></li>
-        <li><a href="#practice" class="nav-link">АСКРО-аналіз</a></li>
-        <li><a href="#rubric-3" class="nav-link">Захист</a></li>
-        <li><a href="#interview" class="nav-link">Інтерв’ю</a></li>
-        <li><a href="#faq" class="nav-link">Довідник</a></li>
+        <li><a href="#top" class="nav-link active">Читати</a></li>
+        <li><a href="#journal-catalog" class="nav-link">Усі статті</a></li>
+        <li><a href="#journal-news" class="nav-link">Новини</a></li>
+        <li><a href="#practice" class="nav-link js-featured-anchor">АСКРО</a></li>
+        <li><a href="#editorial-guide" class="nav-link">Редакції</a></li>
       </ul>
 
       <div class="nav-actions">
-        <button type="button" class="btn-presentation" id="openPresentationBtn" title="Відкрити слайд-шоу для показу на захисті (14 слайдів)">
+        <button type="button" class="btn-presentation" id="openPresentationBtn" title="Відкрити слайд-шоу для показу поточної статті">
           <span>▶</span> <span>Режим показу</span>
         </button>
         <button type="button" class="btn-icon" id="themeToggleBtn" aria-label="Змінити тему" title="Перемкнути світлу / темну тему">
@@ -67,18 +65,35 @@
 
     <!-- Мобільне меню -->
     <nav class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Мобільна навігація">
-      <a href="#intro">Про що піде мова та опитування</a>
-      <a href="#rubric-1">Рубрика 1: Атомна енергетика та ПАЕС</a>
-      <a href="#rubric-2">Рубрика 2: Екологічні та технічні аспекти</a>
-      <a href="#practice">Практична робота: Дані АСКРО</a>
-      <a href="#rubric-3">Рубрика 3: Надійність та 3-рівневий захист</a>
-      <a href="#interview">Інтерв’ю зі спеціалістом ПАЕС</a>
-      <a href="#faq">Довідник читача та вікторина</a>
-      <a href="#afterword">Післямова, висновки та джерела</a>
+      <a href="#top">Читати активну статтю</a>
+      <a href="#journal-catalog">Усі статті та випуски журналу</a>
+      <a href="#journal-news">Актуальні новини</a>
+      <a href="#practice" class="js-featured-anchor">Практикум АСКРО (№7/2026)</a>
+      <a href="#rubric-3" class="js-featured-anchor">3-рівневий захист (№7/2026)</a>
+      <a href="#interview" class="js-featured-anchor">Інтерв’ю зі спеціалістом (№7/2026)</a>
+      <a href="#editorial-guide">Для авторів і вчительки</a>
     </nav>
   </header>
 
   <main id="top">
+    <!-- ==================================================================
+         ПАНЕЛЬ ШВИДКОГО ПЕРЕМИКАННЯ СТАТЕЙ ЖУРНАЛУ
+         ================================================================== -->
+    <section class="journal-switcher-bar" aria-label="Перемикач статей журналу">
+      <div class="container switcher-inner">
+        <div class="switcher-label">
+          <span>📚 Випуски журналу:</span>
+          <span class="switcher-active-pill" id="switcherCurrentBadge">№7/2026</span>
+        </div>
+        <div class="switcher-tabs" id="articleSwitcherTabs" role="tablist" aria-label="Оберіть статтю"></div>
+        <div class="switcher-quick-links">
+          <a href="#journal-news" class="switcher-shortcut">📰 Новини</a>
+          <a href="#journal-catalog" class="switcher-shortcut">Усі випуски ▾</a>
+        </div>
+      </div>
+    </section>
+
+    <div id="featuredIssueView">
     <!-- ==================================================================
          HERO-СЕКЦІЯ ТА ОБКЛАДИНКА ВИПУСКУ
          ================================================================== -->
@@ -1058,6 +1073,127 @@
         </div>
       </div>
     </section>
+    </div><!-- /#featuredIssueView -->
+
+    <!-- Контейнер для інших статей журналу (перемикач рендерить сюди №8, №9, №10, №11 та нові роботи) -->
+    <div id="dynamicArticleView" class="dynamic-article-view" hidden></div>
+
+    <!-- ==================================================================
+         КАТАЛОГ УСІХ СТАТЕЙ І ВИПУСКІВ ЖУРНАЛУ
+         ================================================================== -->
+    <section class="journal-section" id="journal-catalog">
+      <div class="container">
+        <div class="section-header-row">
+          <div>
+            <div class="section-kicker">📚 Архів і навігація • «Екологічний вісник»</div>
+            <h2 class="section-title" style="margin-bottom: 6px;">Усі статті та випуски журналу</h2>
+            <p class="section-lead" style="margin-bottom: 0;">
+              Перемикайтеся між готовою конкурсною роботою №7/2026 та демонстраційними статтями, готовими до заміни реальними матеріалами від учительки та співавторів.
+            </p>
+          </div>
+          <div class="catalog-search-box">
+            <input type="search" id="catalogSearchInput" class="catalog-search-input" placeholder="Пошук статті, теми чи автора..." aria-label="Пошук статей журналу">
+          </div>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="filter-pills" id="catalogFilterGroup">
+            <button type="button" class="filter-pill active" data-cat="all">Усі публікації (5)</button>
+            <button type="button" class="filter-pill" data-cat="verified">Готові конкурсні роботи</button>
+            <button type="button" class="filter-pill" data-cat="energy">Енергетика й АЕС</button>
+            <button type="button" class="filter-pill" data-cat="ecology">Екологія і вода</button>
+            <button type="button" class="filter-pill" data-cat="youth">Клімат і молодь</button>
+          </div>
+          <div class="catalog-legend">
+            <span class="legend-dot verified"></span> Основна робота
+            <span class="legend-dot demo" style="margin-left: 12px;"></span> Демо-макет (до наповнення)
+          </div>
+        </div>
+
+        <div class="catalog-grid" id="journalCatalogGrid">
+          <!-- Картки статей генеруються з ECO_JOURNAL_ARTICLES -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         АКТУАЛЬНІ НОВИНИ ЖУРНАЛУ ТА ЕНЕРГОЕКОЛОГІЇ
+         ================================================================== -->
+    <section class="journal-section" id="journal-news" style="background: var(--bg-subtle);">
+      <div class="container">
+        <div class="section-header-row">
+          <div>
+            <div class="section-kicker">📰 Новини редакції • Осінь 2026</div>
+            <h2 class="section-title" style="margin-bottom: 6px;">Актуальні новини «Екологічного вісника»</h2>
+            <p class="section-lead" style="margin-bottom: 0;">
+              Оновлення журнального порталу, підготовка студентських матеріалів до конкурсу «Ядерна енергетика і світ» та екологічні спостереження.
+            </p>
+          </div>
+        </div>
+
+        <div class="filter-pills" id="newsFilterGroup" style="margin-bottom: 22px;">
+          <button type="button" class="filter-pill active" data-news-cat="all">Усі новини (6)</button>
+          <button type="button" class="filter-pill" data-news-cat="college">Редакція та коледж</button>
+          <button type="button" class="filter-pill" data-news-cat="ecology">Екомоніторинг</button>
+          <button type="button" class="filter-pill" data-news-cat="energy">Енергетика</button>
+        </div>
+
+        <div class="news-grid" id="journalNewsGrid">
+          <!-- Картки новин генеруються з ECO_JOURNAL_NEWS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         ДЛЯ АВТОРІВ, ОДНОГРУПНИКІВ ТА ВЧИТЕЛЬКИ (ЯК ДОДАТИ НОВУ СТАТТЮ)
+         ================================================================== -->
+    <section class="journal-section" id="editorial-guide">
+      <div class="container">
+        <div class="editorial-guide-card">
+          <div class="editorial-guide-main">
+            <div class="section-kicker" style="color: var(--secondary-light);">✍️ Редакційний портфель • Розвиток сайту</div>
+            <h2 style="font-size: 1.65rem; font-weight: 800; margin-bottom: 10px;">Як додавати нові статті колег, роботи від учительки та новини</h2>
+            <p style="color: var(--text-muted); margin-bottom: 18px;">
+              Цей портал побудовано спеціально так, щоб «Екологічний вісник» міг постійно рости: кожна нова стаття одразу отримує власну сторінку для читання, місце в каталозі та набір слайдів у режимі презентації.
+            </p>
+            <div class="editorial-steps-grid">
+              <div class="editorial-step">
+                <span class="step-num">1</span>
+                <div>
+                  <strong>Передайте матеріал редакції</strong>
+                  <p>Текст реферату чи статті (`.docx`), імена співавторів, таблиці й фотографії або графіки.</p>
+                </div>
+              </div>
+              <div class="editorial-step">
+                <span class="step-num">2</span>
+                <div>
+                  <strong>Додайте запис у `articles-data.js`</strong>
+                  <p>Статтю можна оформити новим випуском (№12/2026…) або підставити замість будь-якого з 4 демо-шаблонів (№8–№11).</p>
+                </div>
+              </div>
+              <div class="editorial-step">
+                <span class="step-num">3</span>
+                <div>
+                  <strong>Презентуйте на захисті</strong>
+                  <p>Натисніть «▶ Режим показу», щоб продемонструвати обрану статтю аудиторії на весь екран із таймером.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="editorial-guide-aside">
+            <div class="editorial-badge-box">
+              <img src="assets/images/college_logo.png" alt="ППК" style="width: 56px; height: 56px; margin: 0 auto 10px; border-radius: 50%;">
+              <div style="font-weight: 800; font-size: 1.05rem;">Редакція ЗП(ПТ)О «ППК»</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">м. Південноукраїнськ • Науковий керівник: Мітченко О.А.</div>
+              <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px;">
+                <button type="button" class="btn-primary" id="editorialBackToMainBtn" style="width: 100%; justify-content: center;">📖 До основної статті №7/2026</button>
+                <button type="button" class="btn-secondary" id="editorialLaunchDeckBtn" style="width: 100%; justify-content: center;">🎬 Презентація активної статті</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Футер сайту -->
@@ -1065,45 +1201,45 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <h3>Науково-учнівський журнал «Екологічний вісник» №7/2026</h3>
+          <h3>Науково-учнівський журнал «Екологічний вісник»</h3>
           <p>
-            Електронне видання та презентаційний вебсайт дослідницького проєкту на Всеукраїнський конкурс рефератів серед учнівської молоді «Ядерна енергетика і світ».
+            Багатостатейний вебпортал та презентаційна платформа дослідницьких робіт учнівської молоді (ЗП(ПТ)О «Південноукраїнський професійний коледж») на Всеукраїнський конкурс «Ядерна енергетика і світ».
           </p>
         </div>
         <div class="footer-col">
-          <h4>Рубрики випуску</h4>
+          <h4>Навігація журналом</h4>
           <ul class="footer-links">
-            <li><a href="#intro">Вступ та опитування містян</a></li>
-            <li><a href="#rubric-1">Рубрика 1: АЕС під час війни</a></li>
-            <li><a href="#rubric-2">Рубрика 2: Екологія та АСКРО</a></li>
-            <li><a href="#rubric-3">Рубрика 3: Надійність та захист</a></li>
+            <li><a href="#top" class="js-switch-article" data-article-id="aes-war-2026">Випуск №7/2026 (Основна стаття)</a></li>
+            <li><a href="#journal-catalog">Усі статті та випуски (5)</a></li>
+            <li><a href="#journal-news">Актуальні новини (6)</a></li>
+            <li><a href="#editorial-guide">Як додати статтю колег</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Інтерактивні розділи</h4>
+          <h4>Інтерактивні модулі №7/2026</h4>
           <ul class="footer-links">
-            <li><a href="#practice">Практична робота АСКРО</a></li>
-            <li><a href="#interview">Інтерв’ю зі спеціалістом</a></li>
-            <li><a href="#faq">Довідник читача та вікторина</a></li>
-            <li><a href="#" id="footerSlideLink">Відкрити 14 слайдів презентації</a></li>
+            <li><a href="#practice" class="js-featured-anchor">Практична робота АСКРО</a></li>
+            <li><a href="#interview" class="js-featured-anchor">Інтерв’ю зі спеціалістом</a></li>
+            <li><a href="#faq" class="js-featured-anchor">Довідник читача та вікторина</a></li>
+            <li><a href="#" id="footerSlideLink">Відкрити презентацію активної статті</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 ЗП(ПТ)О «Південноукраїнський професійний коледж» • Автор: Антонюк Єгор</span>
+        <span>© 2026 ЗП(ПТ)О «Південноукраїнський професійний коледж» • Ініціатор порталу: Антонюк Єгор</span>
         <span>Керівник: Мітченко О.А. • м. Південноукраїнськ</span>
       </div>
     </div>
   </footer>
 
   <!-- ==================================================================
-       МОДАЛЬНЕ ВІКНО: РЕЖИМ ПРЕЗЕНТАЦІЇ (SHOWCASE 14 SLIDES DECK)
+       МОДАЛЬНЕ ВІКНО: РЕЖИМ ПРЕЗЕНТАЦІЇ (SHOWCASE DECK)
        ================================================================== -->
   <div class="presentation-modal" id="presentationModal" role="dialog" aria-modal="true" aria-label="Режим презентації проєкту">
     <div class="deck-top-bar">
       <div class="deck-title">
         <span>🎬</span>
-        <span>Захист проєкту: «Роль АЕС під час воєнного стану в Україні»</span>
+        <span id="deckTitleText">Захист проєкту: «Роль АЕС під час воєнного стану в Україні»</span>
       </div>
       <div class="deck-controls">
         <span class="deck-timer" id="deckTimer" title="Таймер доповіді">00:00</span>
@@ -1120,7 +1256,7 @@
     <div class="deck-stage-area">
       <button type="button" class="slide-nav-prev" id="prevSlideBtn" title="Попередній слайд (←)">‹</button>
       <div class="slide-canvas" id="slideCanvas">
-        <!-- Динамічний контент слайда 1..14 рендериться через JS -->
+        <!-- Динамічний контент слайдів рендериться через JS -->
       </div>
       <button type="button" class="slide-nav-next" id="nextSlideBtn" title="Наступний слайд (→)">›</button>
     </div>
@@ -1128,9 +1264,26 @@
     <div class="deck-bottom-bar">
       <div id="slideCounterText" style="font-weight: 700;">Слайд 1 з 14</div>
       <div class="slide-thumbnails-strip" id="slideThumbnailsStrip">
-        <!-- Кнопки 1..14 -->
+        <!-- Кнопки слайдів -->
       </div>
       <div style="color: #94a3b8; font-size: 0.78rem;">Керування: ← → або Пробіл • Esc — вихід</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================
+       МОДАЛЬНЕ ВІКНО ДЛЯ ЧИТАННЯ ПОВНОЇ НОВИНИ
+       ================================================================== -->
+  <div class="news-modal" id="newsModal" role="dialog" aria-modal="true" aria-labelledby="newsModalTitle">
+    <div class="news-modal-card">
+      <button type="button" class="news-modal-close" id="newsModalCloseBtn" aria-label="Закрити новину">✕</button>
+      <div class="news-modal-meta" id="newsModalMeta"></div>
+      <h3 id="newsModalTitle" style="font-size: 1.45rem; font-weight: 800; margin: 8px 0 14px;"></h3>
+      <img src="" alt="" id="newsModalImg" class="news-modal-img">
+      <div id="newsModalBody" class="news-modal-body"></div>
+      <div class="news-modal-footer">
+        <button type="button" class="btn-primary" id="newsModalReadArticleBtn">📖 Відкрити пов’язану статтю</button>
+        <button type="button" class="btn-secondary" id="newsModalCloseSecondaryBtn">Закрити</button>
+      </div>
     </div>
   </div>
 
@@ -1145,6 +1298,7 @@
     </div>
   </div>
 
+  <script src="assets/js/articles-data.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

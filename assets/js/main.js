@@ -16,12 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
   initQuiz();
   initLightbox();
   initPresentationDeck();
+  initJournalPortal();
 
   const printBtn = document.getElementById('printBtn');
   if (printBtn) {
     printBtn.addEventListener('click', () => window.print());
   }
 });
+
+function escapeHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 /* ==========================================================================
    1. ПЕРЕМИКАЧ ТЕМИ (СВІТЛА / ТЕМНА РЕАКТОРНА)
@@ -61,7 +71,6 @@ function initThemeToggle() {
 function initReadingProgress() {
   const fill = document.getElementById('readingProgressFill');
   const navLinks = document.querySelectorAll('#desktopNav .nav-link');
-  const sections = Array.from(document.querySelectorAll('section[id]'));
 
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
@@ -71,16 +80,19 @@ function initReadingProgress() {
       fill.style.width = `${pct}%`;
     }
 
-    let currentId = '';
+    const sections = Array.from(document.querySelectorAll('section[id]')).filter(s => s.offsetParent !== null);
+    let currentId = 'top';
     sections.forEach(sec => {
-      const top = sec.offsetTop - 130;
+      const top = sec.offsetTop - 140;
       if (scrollTop >= top) {
         currentId = sec.getAttribute('id');
       }
     });
 
     navLinks.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+      const href = link.getAttribute('href');
+      const isTopActive = href === '#top' && (currentId === 'top' || !Array.from(navLinks).some(l => l.getAttribute('href') === `#${currentId}`));
+      link.classList.toggle('active', href === `#${currentId}` || isTopActive);
     });
   }, { passive: true });
 }
@@ -612,10 +624,11 @@ function initLightbox() {
   const closeBtn = document.getElementById('lightboxCloseBtn');
   const coverBtn = document.getElementById('viewOriginalCoverBtn');
 
-  document.querySelectorAll('.zoomable-img').forEach(img => {
-    img.addEventListener('click', () => {
+  document.addEventListener('click', e => {
+    const img = e.target.closest('.zoomable-img');
+    if (img) {
       openLightbox(img.getAttribute('src'), img.getAttribute('data-caption') || img.getAttribute('alt'));
-    });
+    }
   });
 
   if (coverBtn) {
@@ -641,6 +654,7 @@ function initPresentationDeck() {
   const counterText = document.getElementById('slideCounterText');
   const progressFill = document.getElementById('slideProgressFill');
   const thumbsStrip = document.getElementById('slideThumbnailsStrip');
+  const deckTitleText = document.getElementById('deckTitleText');
   const prevBtn = document.getElementById('prevSlideBtn');
   const nextBtn = document.getElementById('nextSlideBtn');
   const closeBtn = document.getElementById('closePresentationBtn');
@@ -650,7 +664,7 @@ function initPresentationDeck() {
 
   if (!modal || !canvas) return;
 
-  const slides = [
+  const featuredSlides = [
     {
       kicker: 'Слайд 1 • Титул конкурсного проєкту',
       title: 'Роль АЕС під час воєнного стану в Україні',
@@ -932,46 +946,75 @@ function initPresentationDeck() {
     }
   ];
 
+  let activeSlides = featuredSlides;
+  let activeIssueLabel = '№7/2026';
   let currentSlide = 0;
   let timerSec = 0;
   let timerInterval = null;
 
-  thumbsStrip.innerHTML = slides.map((_, i) => `
-    <button type="button" class="slide-thumb ${i === 0 ? 'active' : ''}" data-slide="${i}">${i + 1}</button>
-  `).join('');
+  function rebuildThumbs() {
+    thumbsStrip.innerHTML = activeSlides.map((_, i) => `
+      <button type="button" class="slide-thumb ${i === 0 ? 'active' : ''}" data-slide="${i}">${i + 1}</button>
+    `).join('');
+  }
 
   function renderSlide(idx) {
-    currentSlide = Math.max(0, Math.min(slides.length - 1, idx));
-    const s = slides[currentSlide];
+    currentSlide = Math.max(0, Math.min(activeSlides.length - 1, idx));
+    const s = activeSlides[currentSlide];
 
     canvas.innerHTML = `
       <div class="slide-header-bar">
         <span class="slide-kicker-pill">${s.kicker}</span>
-        <span style="font-size: 0.8rem; color: #94a3b8; font-weight: 700;">Журнал «Екологічний вісник» №7/2026</span>
+        <span style="font-size: 0.8rem; color: #94a3b8; font-weight: 700;">Журнал «Екологічний вісник» ${escapeHtml(activeIssueLabel)}</span>
       </div>
       <div class="slide-content-body">
         <h2 class="slide-title-lg">${s.title}</h2>
         ${s.body}
       </div>
       <div class="slide-footer-bar">
-        <span>ЗП(ПТ)О «Південноукраїнський професійний коледж» • Конкурс «Ядерна енергетика і світ»</span>
-        <span>Слайд ${currentSlide + 1} / ${slides.length}</span>
+        <span>ЗП(ПТ)О «Південноукраїнський професійний коледж» • Журнал «Екологічний вісник»</span>
+        <span>Слайд ${currentSlide + 1} / ${activeSlides.length}</span>
       </div>
     `;
 
-    counterText.textContent = `Слайд ${currentSlide + 1} з ${slides.length}`;
-    progressFill.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+    counterText.textContent = `Слайд ${currentSlide + 1} з ${activeSlides.length}`;
+    progressFill.style.width = `${((currentSlide + 1) / activeSlides.length) * 100}%`;
 
     thumbsStrip.querySelectorAll('.slide-thumb').forEach((t, i) => {
       t.classList.toggle('active', i === currentSlide);
     });
   }
 
-  function openDeck(startIndex = 0) {
+  function openDeck(startIndex = 0, articleId = null) {
+    const articles = window.ECO_JOURNAL_ARTICLES || [];
+    const targetId = articleId || window.__ECO_ACTIVE_ARTICLE_ID || 'aes-war-2026';
+    const found = articles.find(a => a.id === targetId);
+
+    if (found && !found.isFeatured && Array.isArray(found.slides) && found.slides.length) {
+      activeSlides = found.slides;
+      activeIssueLabel = found.issue;
+      if (deckTitleText) {
+        deckTitleText.textContent = `Показ матеріалу (${found.issue}): «${found.title}»`;
+      }
+    } else {
+      activeSlides = featuredSlides;
+      activeIssueLabel = '№7/2026';
+      if (deckTitleText) {
+        deckTitleText.textContent = 'Захист проєкту: «Роль АЕС під час воєнного стану в Україні»';
+      }
+    }
+
+    rebuildThumbs();
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     renderSlide(startIndex);
   }
+
+  window.openArticleDeck = function (articleId, startIndex = 0) {
+    openDeck(startIndex, articleId);
+  };
+
+  rebuildThumbs();
 
   function closeDeck() {
     modal.classList.remove('active');
@@ -1016,7 +1059,7 @@ function initPresentationDeck() {
     });
   }
 
-  ['openPresentationBtn', 'heroPresentationBtn', 'footerPresentationBtn', 'footerSlideLink'].forEach(id => {
+  ['openPresentationBtn', 'heroPresentationBtn', 'footerPresentationBtn', 'footerSlideLink', 'editorialLaunchDeckBtn'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
       el.addEventListener('click', e => {
@@ -1037,6 +1080,12 @@ function initPresentationDeck() {
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
+      const nm = document.getElementById('newsModal');
+      if (nm && nm.classList.contains('active')) {
+        nm.classList.remove('active');
+        document.body.style.overflow = '';
+        return;
+      }
       const lb = document.getElementById('lightboxModal');
       if (lb && lb.classList.contains('active')) {
         lb.classList.remove('active');
@@ -1064,4 +1113,583 @@ function initPresentationDeck() {
       }
     }
   });
+}
+
+/* ==========================================================================
+   13. ПОРТАЛ ЖУРНАЛУ: ПЕРЕМИКАЧ СТАТЕЙ, КАТАЛОГ ТА АКТУАЛЬНІ НОВИНИ
+   ========================================================================== */
+function initJournalPortal() {
+  const articles = window.ECO_JOURNAL_ARTICLES || [];
+  const news = window.ECO_JOURNAL_NEWS || [];
+  if (!articles.length) return;
+
+  const switcherTabs = document.getElementById('articleSwitcherTabs');
+  const switcherCurrentBadge = document.getElementById('switcherCurrentBadge');
+  const headerIssueTag = document.getElementById('headerIssueTag');
+  const featuredView = document.getElementById('featuredIssueView');
+  const dynamicView = document.getElementById('dynamicArticleView');
+
+  let activeCat = 'all';
+  let searchQuery = '';
+  let activeNewsCat = 'all';
+
+  function getInitialArticleId() {
+    try {
+      const param = new URLSearchParams(window.location.search).get('article');
+      if (param && articles.some(a => a.id === param)) return param;
+    } catch (_) {}
+    return articles[0].id;
+  }
+
+  window.__ECO_ACTIVE_ARTICLE_ID = getInitialArticleId();
+
+  function renderSwitcherTabs() {
+    if (!switcherTabs) return;
+    switcherTabs.innerHTML = articles.map(a => {
+      const isActive = a.id === window.__ECO_ACTIVE_ARTICLE_ID;
+      const demoTag = a.status === 'demo' ? '<span class="tab-demo-tag">Демо</span>' : '';
+      return `
+        <button type="button" class="switcher-tab ${isActive ? 'active' : ''}" role="tab" aria-selected="${isActive}" data-article-id="${escapeHtml(a.id)}" title="${escapeHtml(a.title)}">
+          <span class="tab-issue">${escapeHtml(a.issue)}</span>
+          <span>${escapeHtml(a.shortNavTitle || a.title)}</span>
+          ${demoTag}
+        </button>
+      `;
+    }).join('');
+  }
+
+  function renderCatalogGrid() {
+    const grid = document.getElementById('journalCatalogGrid');
+    if (!grid) return;
+
+    const q = searchQuery.trim().toLowerCase();
+    const filtered = articles.filter(a => {
+      const catOk =
+        activeCat === 'all' ||
+        (activeCat === 'verified' && a.status === 'verified') ||
+        a.category === activeCat;
+      if (!catOk) return false;
+      if (!q) return true;
+      const hay = `${a.title} ${a.subtitle} ${a.author} ${a.categoryLabel} ${a.issue} ${(a.tags || []).join(' ')}`.toLowerCase();
+      return hay.includes(q);
+    });
+
+    if (!filtered.length) {
+      grid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 36px 20px; background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: var(--radius-lg);">
+          <p style="font-weight: 700; margin-bottom: 10px;">За запитом нічого не знайдено</p>
+          <button type="button" class="btn-secondary" id="resetCatalogFiltersBtn">Скинути фільтри</button>
+        </div>
+      `;
+      const resetBtn = document.getElementById('resetCatalogFiltersBtn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          activeCat = 'all';
+          searchQuery = '';
+          const inp = document.getElementById('catalogSearchInput');
+          if (inp) inp.value = '';
+          document.querySelectorAll('#catalogFilterGroup .filter-pill').forEach((b, i) => b.classList.toggle('active', i === 0));
+          renderCatalogGrid();
+        });
+      }
+      return;
+    }
+
+    grid.innerHTML = filtered.map(a => {
+      const isCurrent = a.id === window.__ECO_ACTIVE_ARTICLE_ID;
+      return `
+        <article class="article-catalog-card ${isCurrent ? 'is-active' : ''}">
+          <div class="catalog-card-media">
+            <img src="${escapeHtml(a.coverImg)}" alt="${escapeHtml(a.title)}">
+            <div class="catalog-card-badges">
+              <span class="catalog-issue-pill">${escapeHtml(a.issue)}</span>
+              <span class="catalog-status-pill ${a.status === 'verified' ? 'verified' : 'demo'}">
+                ${escapeHtml(a.status === 'verified' ? 'Готова робота' : 'Демо-шаблон')}
+              </span>
+            </div>
+          </div>
+          <div class="catalog-card-body">
+            <div class="catalog-card-cat">${escapeHtml(a.categoryLabel)} • ${escapeHtml(a.readTime)}</div>
+            <h3 class="catalog-card-title">${escapeHtml(a.title)}</h3>
+            <p class="catalog-card-desc">${escapeHtml(a.subtitle)}</p>
+            <div class="catalog-card-meta">
+              <div><strong>Автор:</strong> ${escapeHtml(a.author)}</div>
+              <div><strong>Презентація:</strong> ${a.slidesCount} слайдів</div>
+            </div>
+            <div class="catalog-card-actions">
+              <button type="button" class="catalog-btn-read js-switch-article" data-article-id="${escapeHtml(a.id)}">
+                ${isCurrent ? '✓ Зараз відкрито' : '📖 Читати статтю'}
+              </button>
+              <button type="button" class="catalog-btn-deck js-open-article-deck" data-article-id="${escapeHtml(a.id)}" title="Запустити слайди цієї статті">
+                ▶ ${a.slidesCount} сл.
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function renderDynamicArticle(article) {
+    if (!dynamicView) return;
+    const idx = articles.findIndex(a => a.id === article.id);
+    const prevArticle = articles[(idx - 1 + articles.length) % articles.length];
+    const nextArticle = articles[(idx + 1) % articles.length];
+
+    const statsHtml = (article.stats || []).map(st => `
+      <div class="stat-box">
+        <div class="stat-number">${escapeHtml(st.value)}</div>
+        <div class="stat-label">${escapeHtml(st.label)}</div>
+      </div>
+    `).join('');
+
+    const highlightsHtml = (article.highlights || []).map((h, i) => `
+      <li><span class="bullet">${String(i + 1).padStart(2, '0')}</span> ${escapeHtml(h)}</li>
+    `).join('');
+
+    const sectionsHtml = (article.sections || []).map((sec, sIdx) => {
+      const paras = (sec.paragraphs || []).map(p => `<p>${escapeHtml(p)}</p>`).join('');
+      const callout = sec.callout ? `
+        <div class="callout-banner" style="margin-top: 18px;">
+          <div class="callout-icon">${escapeHtml(sec.callout.icon || 'ℹ️')}</div>
+          <div>
+            <strong>${escapeHtml(sec.callout.title)}:</strong> ${escapeHtml(sec.callout.text)}
+          </div>
+        </div>
+      ` : '';
+      const fig = sec.image ? `
+        <figure class="dynamic-section-figure">
+          <img src="${escapeHtml(sec.image.src)}" alt="${escapeHtml(sec.image.caption || sec.title)}" class="zoomable-img" data-caption="${escapeHtml(sec.image.caption || '')}">
+          <figcaption>${escapeHtml(sec.image.caption || '')}</figcaption>
+        </figure>
+      ` : '';
+      const tbl = sec.table ? `
+        <div class="dynamic-table-wrap">
+          <table class="dynamic-data-table">
+            <thead>
+              <tr>${sec.table.headers.map(h => `<th>${escapeHtml(h)}</th>`).join('')}</tr>
+            </thead>
+            <tbody>
+              ${sec.table.rows.map(r => `<tr>${r.map(c => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      ` : '';
+
+      return `
+        <article class="dynamic-article-body-card" id="dyn-sec-${sIdx}">
+          <div class="section-kicker">${escapeHtml(sec.kicker)}</div>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 14px;">${escapeHtml(sec.title)}</h3>
+          ${paras}
+          ${callout}
+          ${fig}
+          ${tbl}
+        </article>
+      `;
+    }).join('');
+
+    const inter = article.interactive;
+    let interactiveHtml = '';
+    if (inter) {
+      const tabsButtons = (inter.tabs || []).map((t, i) => `
+        <button type="button" class="dynamic-tab-btn ${i === 0 ? 'active' : ''}" data-dyn-tab="${i}">${escapeHtml(t.label)}</button>
+      `).join('');
+
+      const q = inter.quiz;
+      const quizHtml = q ? `
+        <div style="margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--border-color);" id="dynQuizBox">
+          <div class="section-kicker">🧠 Міні-перевірка матеріалу</div>
+          <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 12px;">${escapeHtml(q.question)}</h4>
+          <div class="quiz-options">
+            ${q.options.map((opt, oIdx) => `
+              <button type="button" class="quiz-option-btn dyn-quiz-opt" data-opt="${oIdx}">${escapeHtml(opt)}</button>
+            `).join('')}
+          </div>
+          <div id="dynQuizFeedback" style="margin-top: 12px;"></div>
+        </div>
+      ` : '';
+
+      interactiveHtml = `
+        <div class="dynamic-interactive-box">
+          <div class="section-kicker">⚙️ Інтерактивний модуль статті</div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 6px;">${escapeHtml(inter.title)}</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">${escapeHtml(inter.subtitle)}</p>
+          <div class="dynamic-tabs-row" id="dynTabsRow">${tabsButtons}</div>
+          <div class="dynamic-tab-panel" id="dynTabPanel"></div>
+          ${quizHtml}
+        </div>
+      `;
+    }
+
+    const conclusionsHtml = (article.conclusionPoints || []).map((pt, i) => `
+      <div class="conclusion-item" style="background: var(--bg-subtle); border: 1px solid var(--border-color); color: var(--text-main);">
+        <span class="conclusion-num">${i + 1}</span>
+        <div class="conclusion-text" style="color: var(--text-main);">${escapeHtml(pt)}</div>
+      </div>
+    `).join('');
+
+    const sourcesHtml = (article.sources || []).map(src => `
+      <li class="source-item">
+        <span class="source-badge">Джерело</span>
+        <a href="${escapeHtml(src.url)}" ${src.url.startsWith('#') ? '' : 'target="_blank" rel="noopener"'}>${escapeHtml(src.label)}</a>
+      </li>
+    `).join('');
+
+    dynamicView.innerHTML = `
+      <section class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge-row">
+              <span class="badge badge-primary">${escapeHtml(article.categoryLabel)}</span>
+              <span class="badge badge-eco">Випуск ${escapeHtml(article.issue)}</span>
+              <span class="badge badge-contest">${escapeHtml(article.statusLabel)}</span>
+            </div>
+            <h2 class="hero-title">${escapeHtml(article.title)}</h2>
+            <p class="hero-description">${escapeHtml(article.subtitle)}</p>
+            <div class="hero-meta-card">
+              <div>
+                <div class="meta-item-label">Автор / статус матеріалу</div>
+                <div class="meta-item-value">${escapeHtml(article.author)}</div>
+                <div class="meta-item-sub">${escapeHtml(article.authorMeta)}</div>
+              </div>
+              <div>
+                <div class="meta-item-label">Кураторство</div>
+                <div class="meta-item-value">${escapeHtml(article.supervisor)}</div>
+                <div class="meta-item-sub">${escapeHtml(article.supervisorMeta)}</div>
+              </div>
+            </div>
+            <div class="hero-btn-row">
+              <button type="button" class="btn-primary" id="dynHeroDeckBtn">🎬 Презентація (${article.slidesCount} слайдів)</button>
+              <a href="#dyn-article-content" class="btn-secondary">📖 Читати текст</a>
+              <button type="button" class="btn-secondary js-switch-article" data-article-id="aes-war-2026">← До №7/2026</button>
+            </div>
+          </div>
+          <div class="hero-cover-showcase">
+            <div class="journal-cover-frame">
+              <div class="journal-inner-cover">
+                <div class="cover-header">
+                  <h3>Науково-учнівський журнал • ${escapeHtml(article.issue)}</h3>
+                  <h2>ЕКОЛОГІЧНИЙ ВІСНИК</h2>
+                </div>
+                <img src="${escapeHtml(article.coverImg)}" alt="${escapeHtml(article.title)}" class="cover-triptych-img zoomable-img" data-caption="${escapeHtml(article.title)}">
+                <div class="cover-body">
+                  <div class="cover-issue-topic">${escapeHtml(article.title)}</div>
+                  <ul class="cover-highlights-list">${highlightsHtml}</ul>
+                </div>
+                <div class="cover-author-footer">
+                  <img src="assets/images/college_logo.png" alt="ППК" class="cover-author-avatar">
+                  <div class="cover-author-info">
+                    <div>${escapeHtml(article.statusLabel)}</div>
+                    <strong>${escapeHtml(article.author)}</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-banner" aria-label="Ключові факти статті">
+        <div class="container stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+          ${statsHtml}
+        </div>
+      </section>
+
+      <section class="journal-section" id="dyn-article-content">
+        <div class="container">
+          ${article.status === 'demo' ? `
+            <div class="dynamic-demo-notice">
+              <div>
+                <strong>🧩 Редакційний макет (${escapeHtml(article.issue)}):</strong> цей матеріал згенеровано як зразок статті та презентації журналу. За наявності готової роботи від учительки чи одногрупників її можна підставити замість цього тексту.
+              </div>
+              <button type="button" class="btn-secondary js-switch-article" data-article-id="aes-war-2026" style="padding: 8px 14px; font-size: 0.82rem;">Повернутися до №7/2026</button>
+            </div>
+          ` : ''}
+
+          ${sectionsHtml}
+          ${interactiveHtml}
+
+          <div class="dynamic-article-body-card">
+            <div class="section-kicker">🏁 Висновки та бібліографія</div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 14px;">Підсумки публікації</h3>
+            <div class="conclusion-cards-list">${conclusionsHtml}</div>
+            <ul class="sources-list" style="margin-top: 20px;">${sourcesHtml}</ul>
+          </div>
+
+          <div class="article-pager-bar">
+            <button type="button" class="btn-secondary js-switch-article" data-article-id="${escapeHtml(prevArticle.id)}">
+              ← ${escapeHtml(prevArticle.issue)}: ${escapeHtml(prevArticle.shortNavTitle)}
+            </button>
+            <button type="button" class="btn-primary js-open-article-deck" data-article-id="${escapeHtml(article.id)}">
+              🎬 Презентувати цю статтю (${article.slidesCount} слайдів)
+            </button>
+            <button type="button" class="btn-secondary js-switch-article" data-article-id="${escapeHtml(nextArticle.id)}">
+              ${escapeHtml(nextArticle.issue)}: ${escapeHtml(nextArticle.shortNavTitle)} →
+            </button>
+          </div>
+        </div>
+      </section>
+    `;
+
+    const heroDeckBtn = document.getElementById('dynHeroDeckBtn');
+    if (heroDeckBtn && typeof window.openArticleDeck === 'function') {
+      heroDeckBtn.addEventListener('click', () => window.openArticleDeck(article.id, 0));
+    }
+
+    if (inter && Array.isArray(inter.tabs) && inter.tabs.length) {
+      const panelEl = document.getElementById('dynTabPanel');
+      const tabsRow = document.getElementById('dynTabsRow');
+      const renderTab = tIdx => {
+        const t = inter.tabs[tIdx];
+        if (!t || !panelEl) return;
+        panelEl.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+            <span class="badge badge-eco">${escapeHtml(t.badge)}</span>
+            <h4 style="font-size: 1.1rem; font-weight: 800; margin: 0;">${escapeHtml(t.heading)}</h4>
+          </div>
+          <p style="color: var(--text-muted); margin: 0; line-height: 1.6;">${escapeHtml(t.summary)}</p>
+          <div class="dynamic-metrics-grid">
+            ${(t.metrics || []).map(m => `
+              <div class="dynamic-metric-tile">
+                <span>${escapeHtml(m.label)}</span>
+                <strong>${escapeHtml(m.val)}</strong>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      };
+      renderTab(0);
+      if (tabsRow) {
+        tabsRow.addEventListener('click', e => {
+          const b = e.target.closest('.dynamic-tab-btn');
+          if (!b) return;
+          tabsRow.querySelectorAll('.dynamic-tab-btn').forEach(x => x.classList.remove('active'));
+          b.classList.add('active');
+          renderTab(Number(b.getAttribute('data-dyn-tab')));
+        });
+      }
+    }
+
+    if (inter && inter.quiz) {
+      const quizBox = document.getElementById('dynQuizBox');
+      const feedback = document.getElementById('dynQuizFeedback');
+      if (quizBox && feedback) {
+        quizBox.addEventListener('click', e => {
+          const btn = e.target.closest('.dyn-quiz-opt');
+          if (!btn || btn.disabled) return;
+          const chosen = Number(btn.getAttribute('data-opt'));
+          const opts = quizBox.querySelectorAll('.dyn-quiz-opt');
+          opts.forEach((o, oIdx) => {
+            o.disabled = true;
+            if (oIdx === inter.quiz.correctIndex) o.classList.add('correct');
+            else if (oIdx === chosen) o.classList.add('wrong');
+          });
+          const ok = chosen === inter.quiz.correctIndex;
+          feedback.innerHTML = `
+            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: ${ok ? 'rgba(16, 185, 129, 0.14)' : 'rgba(239, 68, 68, 0.12)'}; border: 1px solid ${ok ? 'var(--secondary-light)' : 'var(--danger)'}; font-size: 0.9rem;">
+              <strong>${ok ? 'Правильно!' : 'Зверніть увагу:'}</strong> ${escapeHtml(inter.quiz.explanation)}
+            </div>
+          `;
+        });
+      }
+    }
+  }
+
+  function selectArticle(articleId, opts = {}) {
+    const found = articles.find(a => a.id === articleId) || articles[0];
+    window.__ECO_ACTIVE_ARTICLE_ID = found.id;
+
+    if (headerIssueTag) headerIssueTag.textContent = found.issue;
+    if (switcherCurrentBadge) switcherCurrentBadge.textContent = found.issue;
+
+    const openBtn = document.getElementById('openPresentationBtn');
+    if (openBtn) {
+      openBtn.title = `Відкрити слайд-шоу: ${found.title} (${found.slidesCount} слайдів)`;
+    }
+
+    if (found.isFeatured) {
+      if (featuredView) featuredView.hidden = false;
+      if (dynamicView) {
+        dynamicView.hidden = true;
+        dynamicView.innerHTML = '';
+      }
+    } else {
+      if (featuredView) featuredView.hidden = true;
+      if (dynamicView) {
+        dynamicView.hidden = false;
+        renderDynamicArticle(found);
+      }
+    }
+
+    renderSwitcherTabs();
+    renderCatalogGrid();
+
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('article', found.id);
+      window.history.replaceState({}, '', url.toString());
+    } catch (_) {}
+
+    if (opts.scrollToTarget) {
+      setTimeout(() => {
+        const targetEl = document.querySelector(opts.scrollToTarget);
+        if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+      }, 40);
+    } else if (opts.scrollTop !== false) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function renderNewsGrid() {
+    const grid = document.getElementById('journalNewsGrid');
+    if (!grid) return;
+
+    const filtered = news.filter(n => activeNewsCat === 'all' || n.category === activeNewsCat);
+    grid.innerHTML = filtered.map(n => `
+      <article class="news-card">
+        <img src="${escapeHtml(n.image)}" alt="${escapeHtml(n.title)}" class="news-card-img">
+        <div class="news-card-body">
+          <div class="news-card-top">
+            <span class="news-cat-pill">${escapeHtml(n.categoryLabel)}</span>
+            <span>${escapeHtml(n.date)}</span>
+          </div>
+          <h3>${escapeHtml(n.title)}</h3>
+          <p>${escapeHtml(n.summary)}</p>
+          <button type="button" class="news-read-btn" data-news-id="${escapeHtml(n.id)}">Читати повністю →</button>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  function openNewsModal(newsId) {
+    const item = news.find(n => n.id === newsId);
+    const modal = document.getElementById('newsModal');
+    const metaEl = document.getElementById('newsModalMeta');
+    const titleEl = document.getElementById('newsModalTitle');
+    const imgEl = document.getElementById('newsModalImg');
+    const bodyEl = document.getElementById('newsModalBody');
+    const relatedBtn = document.getElementById('newsModalReadArticleBtn');
+    if (!item || !modal) return;
+
+    if (metaEl) metaEl.innerHTML = `<span class="news-cat-pill">${escapeHtml(item.categoryLabel)}</span><span>${escapeHtml(item.date)}</span>`;
+    if (titleEl) titleEl.textContent = item.title;
+    if (imgEl) {
+      imgEl.src = item.image;
+      imgEl.alt = item.title;
+    }
+    if (bodyEl) {
+      bodyEl.innerHTML = (item.body || []).map(p => `<p>${escapeHtml(p)}</p>`).join('');
+    }
+    if (relatedBtn) {
+      const rel = articles.find(a => a.id === item.relatedArticleId);
+      if (rel) {
+        relatedBtn.style.display = 'inline-flex';
+        relatedBtn.textContent = `📖 Читати ${rel.issue}: ${rel.shortNavTitle}`;
+        relatedBtn.onclick = () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+          selectArticle(rel.id);
+        };
+      } else {
+        relatedBtn.style.display = 'none';
+      }
+    }
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  const filterGroup = document.getElementById('catalogFilterGroup');
+  if (filterGroup) {
+    filterGroup.addEventListener('click', e => {
+      const btn = e.target.closest('.filter-pill');
+      if (!btn) return;
+      filterGroup.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCat = btn.getAttribute('data-cat') || 'all';
+      renderCatalogGrid();
+    });
+  }
+
+  const searchInput = document.getElementById('catalogSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      searchQuery = searchInput.value;
+      renderCatalogGrid();
+    });
+  }
+
+  const newsFilter = document.getElementById('newsFilterGroup');
+  if (newsFilter) {
+    newsFilter.addEventListener('click', e => {
+      const btn = e.target.closest('.filter-pill');
+      if (!btn) return;
+      newsFilter.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeNewsCat = btn.getAttribute('data-news-cat') || 'all';
+      renderNewsGrid();
+    });
+  }
+
+  document.addEventListener('click', e => {
+    const sw = e.target.closest('.js-switch-article, .switcher-tab');
+    if (sw) {
+      e.preventDefault();
+      const id = sw.getAttribute('data-article-id');
+      if (id) selectArticle(id);
+      return;
+    }
+
+    const deckBtn = e.target.closest('.js-open-article-deck');
+    if (deckBtn) {
+      e.preventDefault();
+      const id = deckBtn.getAttribute('data-article-id');
+      if (id && typeof window.openArticleDeck === 'function') {
+        window.openArticleDeck(id, 0);
+      }
+      return;
+    }
+
+    const featuredLink = e.target.closest('.js-featured-anchor');
+    if (featuredLink) {
+      const href = featuredLink.getAttribute('href');
+      if (window.__ECO_ACTIVE_ARTICLE_ID !== 'aes-war-2026' && href && href.startsWith('#')) {
+        e.preventDefault();
+        selectArticle('aes-war-2026', { scrollToTarget: href });
+      }
+      return;
+    }
+
+    const newsBtn = e.target.closest('.news-read-btn');
+    if (newsBtn) {
+      openNewsModal(newsBtn.getAttribute('data-news-id'));
+    }
+  });
+
+  const backMainBtn = document.getElementById('editorialBackToMainBtn');
+  if (backMainBtn) {
+    backMainBtn.addEventListener('click', () => selectArticle('aes-war-2026'));
+  }
+
+  const newsModal = document.getElementById('newsModal');
+  ['newsModalCloseBtn', 'newsModalCloseSecondaryBtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && newsModal) {
+      el.addEventListener('click', () => {
+        newsModal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+  if (newsModal) {
+    newsModal.addEventListener('click', e => {
+      if (e.target === newsModal) {
+        newsModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  renderNewsGrid();
+  selectArticle(window.__ECO_ACTIVE_ARTICLE_ID, { scrollTop: false });
 }
